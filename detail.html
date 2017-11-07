@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="css/iconbutton.css">
+    
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+     		var self=plus.webview.currentWebview();
+         	var object_id=self.object_id;  //本文章ID,被评论内容ID,post_id;(全局变量)
+			
+/** AJAX取出详情页数据 object_id 详情页ID
+ * 
+ */
+			mui.ajax('http://123dadagong.com/index.php/Listapp/appindex?id='+object_id+'',{
+				dataType:'json',
+				type:'get',
+				timeout:10000,
+				success:function(data){
+		      		title2.innerHTML=data.post_title;
+					var smeta=eval('('+data.smeta+')');  //JSON字符串转对象
+			          	 var picurl="http://123dadagong.com/data/upload/"+smeta.photo[0].url;  //详情图片
+       			var slider=document.getElementById("slider");
+ //     			var finaslider=''; 
+				var finaslider='<div class="mui-slider-group mui-slider-loop"><div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="'+picurl+'"></a></div><div class="mui-slider-item"><a href="#"><img src="'+picurl+'"></a></div></div>';
+      			slider.innerHTML=finaslider;	
+	//详情字段组装成数组以利循环输出						
+	      		var detai= [[data.post_gangwei,"岗位"],[data.post_qiyieneixin,"企业类型"],[data.post_keywords,"关键字"],[data.post_qiyiejianjie,"企业简介"],[data.post_xinzhishang,"工资上限"],[data.post_xinzhixia,"工资下限"],[data.post_xinchouxiangqin,"薪酬详情"],[data.post_gongzhuoshijian,"工作时间"],[data.post_sex,"性别要求"]];
+     
+				//循环插入行
+				var domdetai = document.getElementById('detai');
+				var txtdetai = [];
+/**
+ * @description 循环插入行
+ * @param {Object} o 返回的data每条的对象
+ */
+				var insertRows = function(o){
+					var txtdetai =
+						'<div class="mui-table">'+
+						'    <div class="mui-table-cell mui-col-xs-3">'+o[1]+'：</div>'+
+						'    <div class="mui-table-cell mui-col-xs-9 mui-text-left"><h5 id='+o+'>'+o[0]+'</h5></div>'+
+						'</div>';
+					return txtdetai;
+				}
+				//success方法里调用
+				for (i=detai.length-1;i>=0;i--){
+					var singleData = detai[i];
+					txtdetai.push(insertRows(singleData));//拼接DOM字符串	
+				}
+				
+				domdetai.innerHTML = txtdetai.join('');//插入dom节点
+				//detai.innerHTML = txt;
+				//循环插入行结束
+      				
+      			},
+      				error:function(xhr,text_state){
+      					console.log(xhr.readyState +'—'+ xhr.status +'—'+ text_state);
+      			}
+      		})
+
+   
+/**
+ * 获得评论内容
+ */
+			mui.get('http://123dadagong.com/index.php?g=comment&m=Widgetapp&a=index&table=posts&post_id='+object_id+'&params=""',
+			{category:'news'},function(data){
+					//获得服务器响应
+					   var comments=data.comments;  //全部评论数据
+					   var parent_comments=data.parent_comments; //全部回复数据
+					   var data_comm=data.data_comm;   //数组(文章表名,文章ID)
+
+						document.getElementById("post_id").value=data_comm.post_id;  //给页面元素赋值
+                 		document.getElementById("post_table").value = data_comm.post_table;
+
+				// 循环插入行
+						var dom = document.getElementById('comments');
+						var txt = [];
+						 imgPrefix = 'http://123dadagong.com/index.php?g=user&m=public&a=avatar&id='
+						/**
+						 * @description 循环插入行
+						 * 返回的DATA每条的对象
+						 * O.UID(发表评论的用户ID),O.FULL_NAME(评论者昵称),
+						 * to_uid(被评论者用户ID)
+						 */
+						var insertRows = function(o){
+							var txt = 
+							'<div id="body'+js+'"; style="padding-top:15px;" class="comment" data-url='+o.url+' data-id=' +o.id+ ' data-uid=' + o.uid + ' data-username=' +o.full_nmae+'>'+
+							'    <img style="margin:8px;" class="msg-user-img"  src="' + imgPrefix + o.uid + '"/>'+ 
+							'    <div class="comment-body>' +
+							'    <div clsaa="comment-content">'+ o.full_name+'<span>:' + o.content +'</span></div>'+
+							'    <div><span class="time"> ' + o.createtime + '  </span><a id="icon-chatbubble"><span class="mui-icon mui-icon-chatbubble"></span></a></div>' +
+							'</div>' +
+							'</div>';
+							return txt;
+						}
+						/**
+						 * 评论回复部分
+						 */
+
+						var ptxt = [];
+						var isertparentRows = function(ob){
+							var ii=ob.parentid;
+							var pfull_name=parent_comments[ii].full_name;
+							var ptxt =
+				'<div  class="cobmment" data-id='+ob.id+' data-uid='+ob.uid+' data-username='+ob.full_name+' >'+
+							'<img style="margin:8px;" class="msg-user-img" src="'+imgPrefix+ob.uid+'"/>'+
+							'<div class="comment-body">'+
+							'  <div class="comment-content">'+ob.full_name+'<span>回复<a>'+pfull_name+'&nbsp</a>'+ob.content+'</span></div>'+
+							'<div><span class="time">'+ob.createtime+'</span><a id="icon-chatbubble"><span class="mui-icon mui-icon-chatubble"></span></a></div>'+
+							'</div>'+
+							'</div>';
+//							alert(JSON.stringify(o))
+							return ptxt;
+						}
+			//success方法调用
+			for (var js=0; js<comments.length; js++){
+				var singleData = comments[js];
+				var condition = singleData.children;
+				txt.push(insertRows(singleData)); //拼接DOM字符串
+			dom.innerHTML = txt.join(''); //插入DOM节点
+				
+				if(condition){
+					for(var i=0; i<condition.length; i++){
+						var sData = condition[i]; 
+						txt.push(isertparentRows(sData));
+					}
+//					alert(ptxt)
+//					var pdom = document.getElementById('body'+js+'');
+//					alert('body'+js+'')
+//					txt.push(ptxt);
+					dom.innerHTML = txt.join('');//插入回复DOM节点
+				}
+			};
+			
+			
+			//循环插入行END
+		     
+	},'json'
+);
+
+
+/**
+ * 提交评论事件
+ */
+		var commentsubmit=document.getElementById("commentsubmit");
+				commentsubmit.addEventListener('tap',function(){
+		var new_content=document.getElementById("content").value;
+		var new_post_table=document.getElementById("post_table").value;
+		var new_post_id=document.getElementById("post_id").value;
+									
+				 /* 从本地存储中获取用户登录信息
+				 * http://www.html5plus.org/doc/zh_cn/storage.html#plus.storage.getItem
+				 */
+				isLogin = plus.storage.getItem("userInfo");
+				/**
+				 * 如果用户以登录，那么替换用户信息；
+				 * 关于if(isLogin)这种直接写一个变量的写法
+				 * http://blog.csdn.net/gulingeagle/article/details/8757039
+				 */
+				if (isLogin) {				
+							var userInfo = plus.storage.getItem("userInfo");
+							var user = JSON.parse(isLogin);
+							var userId = user.userid;
+							var cook = user.cook;						
+					mui.ajax('http://123dadagong.com/?g=comment&m=commentapp&a=post',{
+						data:{
+							PHPSESSID:cook,
+//							url:url,
+							content:new_content,
+							post_table:new_post_table,
+							post_id:new_post_id,
+							parentid:0,
+							to_uid:0
+							
+						},
+						dataType:'json',//数据格式类型
+						async:true,
+						type:'POST',//http请求类型
+						timeout:10000,//超时设置
+						success:function(data){
+							//处理成功返回的数据
+							//{'sesult':1,'data':"注册成功"}
+//					var dom=document.getElementById("comments");
+//					alert(JSON.stringify(data));
+//					var txt=
+//'		<div class="comment" data-username="{$user.user_nicename}" data-uid="{$user.id}">'+
+//'		    <img class="media-object avatar" src="' + imgPrefix + o.uid + '" class="headicon"/>'+
+//
+//'  		  <div class="comment-body">'+
+//'		    <div class="comment-content">'+ob.full_name+':<span class="content">'+new_content+'</span></div>'+
+//'		    <div><span class="time">刚刚</span><i class="fa fa-comment"></i></div>'+
+//'		  </div>'+
+//'		  <div class="clearfix"></div>'+
+//'		</div>'
+
+						}
+					})
+				}else{
+							var subWebview = null,
+								template = null;						
+						
+							if (!mui.os.plus) {
+								mui.openWindow({			
+			 						url: "../login.html",
+									id: "login", 
+								});
+								return;
+							}
+							if (subWebview == null) {
+								//获取共用父窗体
+								template = plus.webview.getWebviewById("default-main");
+							}
+							if (template) {
+								subWebview = template.children()[0];
+								subWebview.loadURL('../login.html');
+								//修改共用父模板的标题
+								mui.fire(template, 'updateHeader', {
+									title: '登陆',
+									showMenu: false
+								});
+								template.show('slide-in-right', 150);
+							}						
+					
+					}
+				});
+
+
+/**
+ * 报名按钮事件
+ */   
+			var blockButton = document.getElementById('block');
+					blockButton.addEventListener('tap', function(event) {
+						mui.openWindow({
+							url: 'baomi.html',
+							id: 'baomi',
+							extras:{title:self.title},
+							show: {
+								aniShow: 'pop-in'
+							},
+							styles: {
+								popGesture: 'hide'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+					}, false); 
+      	})
+    </script>
+ 
+<style type="text/css">
+			.msg-item .msg-user-img{
+				width: 38px;
+				height: 38px;
+				display: inline-block;
+				border-radius: 3px;
+				vertical-align: top;
+				text-align: center;
+				float: left;
+				color: #ddd;
+			}
+    				
+    	.body{
+			font-family: 'Helvetica Neue',Helvetica,sans-serif;
+			font-size: 16px;
+			line-height: 22px;
+			color: #000;
+			background-color: #fff;
+    	}			
+    		
+		.mui-content {
+		    background-color: #fff;
+		    -webkit-overflow-scrolling: touch;
+		}    				
+			p img {
+				max-width: 100%;
+				height: auto;
+			}
+
+    	mui-content{
+    		margin-top: 12px;
+    		margin-left: 10px;
+    		margin-right: 10px;
+    	}
+    	.mui-table{
+    		margin-top: 12px;
+    		padding-left: 12px;
+    		padding-right: 12px;
+/**    		margin-left: 12px;
+/**    		margin-right: 12px; **/
+    	}
+    	h5{
+    		padding-left: 1px;
+    		padding-right: 12px;    
+    		font-size: 16px;		
+    		line-height: 1.5;	
+    	}
+    	
+    	#mui-bar{
+    background-color: #00CCCC;
+}
+   #gangwei{
+   	font-size: 18px;
+    line-height: 22px;
+   }
+
+
+#title2{
+     color:#fff;
+     font-size: 22px;     
+}
+#a{
+    color:#fff;
+}
+#block{
+	top: 0px;
+}
+#divline {
+ height:1px;
+ width:100%;
+ background:#efeff4;
+ overflow:hidden;
+ }
+#calltel{
+	Z-INDEX: 20;
+/**	margin-bottom: 130px;  **/
+/**  position:absolute;  **/
+   position: fixed;
+/**  left:200px; **/
+  right:40px;
+/**  top:150px;	 **/
+ bottom: 190px;
+}
+.msg-user-img{
+				width: 38px;
+				height: 38px;
+				display: inline-block;
+				border-radius: 3px;
+				vertical-align: top;
+				text-align: center;
+				float: left;
+				color: #ddd;
+			}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav" id="mui-bar">
+		<a id="a" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 id="title2" class="mui-title">企业资料</h1>
+	</header>
+			<div id='calltel'>	<a href="tel:0512114">
+<!--
+			<span class="mui-badge mui-badge-primary">直拨</span>
+-->	
+				<span class="classTELred">直拨热线</span>
+			</a> 
+		</div>	
+		<nav class="mui-bar mui-bar-tab">
+			<div class="mui-content">
+<!--				<span class="mui-col mui-col-xs-9">   -->
+     <button id="block"  type="button" class="mui-btn mui-btn-success mui-icon mui-icon-plus  mui-btn-block"> 免 费 报 名 </button>
+			
+<!--			</span>		<span class="mui-col mui-col-xs-5">
+	<button type="button" class="mui-btn mui-btn-danger mui-btn-outlined">
+		            <span class="mui-icon mui-icon-trash"></span>
+		                                        删除	
+		        </button>
+-->
+		    </div>
+		</nav>	
+		
+	<div class="mui-content" style="margin-bottom: 10px;">
+		<div id="slider" class="mui-slider" >
+
+		</div>			
+		<div class="mui-table">
+			<div class="mui-table-cell mui-col-xs-7">
+				<h4 class="mui-ellipsis"  id="gangwei"></h4>
+								<div class="mui-table"><h5 id="modified"></h5></div>
+			</div>
+			<div class="mui-table-cell mui-col-xs-5 mui-text-right">
+				<span style = "color:#0099FF;" class="mui-h4" id="qiyieneixin"></span>
+			</div>
+		</div>
+
+		<div class="mui-table">
+			<h5 id="title"></h5>
+        </div>
+				<div class="mui-table">
+								<div class="mui-table-cell mui-col-xs-3">推荐词:</div>
+								<div class="mui-table-cell mui-col-xs-9 mui-text-left"><h5 id="keywords"></h5></div>
+				</div>
+		<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed" id="detai">	
+		
+		</ul>											
+
+<!-- 评论  -->		
+<br>
+<h4>&nbsp;&nbsp;&nbsp;评论</h4>
+<div class="mui-input-row"	style="margin:0px 5px;" id="commentMain">
+
+	
+	<form class="form-horizontal comment-form" >
+	  <div class="control-group">
+		  <div class="comment-postbox-wraper">
+		  	<textarea class="form-control comment-postbox" placeholder="在这里输入评论" style="min-height:90px;"  name="content" id="content"></textarea>
+		  </div>
+	  </div>
+	  
+	  <div class="control-group">
+	   		<button type="submit" id="commentsubmit" class="btn pull-right btn-primary js-ajax-submit"><i class="fa fa-comment-o"></i> 发表评论</button>
+	  </div>
+	  
+	  <input type="hidden" name="post_table" id="post_table" value=""/>
+	  <input type="hidden" name="post_id" id="post_id" value=""/>
+	  <input type="hidden" name="to_uid" id="to_uid" value="0"/>
+	  <input type="hidden" name="parentid" id="parentid" value="0"/>
+	</form>
+	
+	<script class="comment-tpl" type="text/html">
+		<div class="comment" data-username="{$user.user_nicename}" data-uid="{$user.id}">
+		  <a class="pull-left" href="{:U('user/index/index',array('id'=>$user['id']))}">
+		    <img class="media-object avatar" src="{:U('user/public/avatar',array('id'=>$user['id']))}" class="headicon"/>
+		  </a>
+		  <div class="comment-body">
+		    <div class="comment-content"><a href="{:U('user/index/index',array('id'=>$user['id']))}">{$user.user_nicename}</a>:<span class="content"></span></div>
+		    <div><span class="time">刚刚</span> <a onclick="comment_reply(this);" href="javascript:;"><i class="fa fa-comment"></i></a></div>
+		  </div>
+		  <div class="clearfix"></div>
+		</div>
+	</script>
+	
+	<script class="comment-reply-box-tpl" type="text/html">
+		<div class="comment-reply-submit">
+                    <div class="comment-reply-box">
+                        <input type="text" class="textbox" placeholder="回复">
+                    </div>
+                    <button class="btn pull-right" onclick="comment_submit(this);">回复</button>
+                </div>
+	</script>
+
+
+
+
+<!--	<hr>  -->
+
+</div>
+	<div class="comments" id="comments">
+
+
+	</div>	
+<!--评论结束 -->
+		
+		
+<!--				<div class="mui-table"><h5 id="author"></h5></div>
+				<div class="mui-table"><h5 id="content"></h5></div>
+			-->
+	</div>
+
+</body>
+
+</html>

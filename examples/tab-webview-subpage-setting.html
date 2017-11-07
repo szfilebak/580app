@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/iconbutton.css">
+	<link rel="stylesheet" href="../css2/oil.css">
+		
+
+		<style>
+			html,body {
+				background-color: #efeff4; 
+			}
+			body {
+			    font-family: 'Helvetica Neue',Helvetica,sans-serif;
+			    font-size: 13px;
+			}
+			.title{
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			.ninshgong{
+				text-indent:2em;
+				color: #8f8f94;
+				font-size: 12px;
+			}
+			.calltel{
+				Z-INDEX: 20;
+	    	    position: fixed;
+		 	    right:10%;
+	 	   	    bottom: 20%;
+			}
+		</style>
+	</head>
+
+<body>
+	<div class='calltel'>
+		<a href="tel:0512114">
+			<span class="classTELred">直拨热线</span>
+		</a> 
+	</div>	
+	<div class="mui-content">
+		<div style="text-indent:2em;" class="title">
+			你有朋友要打临时工么，让他(她)用自已的手机号注册打工580，查看最新的临时工招聘信息吧。
+		</div>			
+		<!--下拉刷新容器-->
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+		  <div class="mui-scroll">
+		    <!--数据列表-->
+		    <ul class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell" style="padding:11px 0; margin: 0;">			
+					<div style="background-color:white ;padding: 10px;margin:10px 10px 10px 10px;">
+						<div id="linshiGongXinXi"></div>	
+					</div>						
+				</li>			    				      
+		    </ul>
+		  </div>
+		</div>			
+	</div>
+</body>
+	<script src="../js/mui.min.js"></script>
+	<script>
+				console.log('setting-init--1');		
+	mui.init({
+	  pullRefresh : {
+	    container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+	    down : {
+	      height:50,//可选,默认50.触发下拉刷新拖动距离,
+	      auto: false,//可选,默认false.自动下拉刷新一次
+	      contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+	      contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+	      contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+	      callback :pulldownRefresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+	    }
+	  }
+	  
+	});
+			console.log('tab-webview-subpage-setting.html--预载');
+
+		var _url = 'https://app.dagong580.cn/Jsonapi/singleArticle?apikey=5f4cb6c57748665ec03c4afb4e4deae4&class_id=1';
+		console.log(_url);
+  		mui.ajax(_url,{
+  			dataType:'json',
+  			async:'false',
+  			type:'get',
+  			timeout:10000,
+  			success:function(data){
+	  		    	console.log(JSON.stringify(data));			
+				var goodsList=data.result;		
+				var lingShi=document.getElementById("linshiGongXinXi");
+				var finallist=goodsList[0].single_article_body;	
+				console.log(finallist);
+				lingShi.innerHTML=finallist;
+  			}, 
+			error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
+				console.log('AJAX:ERR-|T:'+type+'|错误文本:'+xhr.responseText);
+				if(type == 'timeout') {
+					mui.toast("请求超时：请检查网络")
+				} else {
+					mui.toast('请求失败：' + type + '\n err:' + errorThrown);
+				}
+			},   	
+	  	});	   
+	/**
+	 * 下拉刷新具体业务实现
+	 */
+	function pulldownRefresh(){
+		var _url = 'https://app.dagong580.cn/Jsonapi/singleArticle?apikey=5f4cb6c57748665ec03c4afb4e4deae4&class_id=1';
+		console.log(_url);
+  		mui.ajax(_url,{
+  			dataType:'json',
+  			async:'false',
+  			type:'get',
+  			timeout:10000,
+  			success:function(data){
+	  		    	console.log(JSON.stringify(data));			
+				var goodsList=data.result;		
+				var lingShi=document.getElementById("linshiGongXinXi");
+				var finallist=goodsList[0].single_article_body;	
+				console.log(finallist);
+				lingShi.innerHTML=finallist;
+  			}, 
+			error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
+				console.log('AJAX:ERR-|T:'+type+'|错误文本:'+xhr.responseText);
+				if(type == 'timeout') {
+					mui.toast("请求超时：请检查网络")
+				} else {
+					mui.toast('请求失败：' + type + '\n err:' + errorThrown);
+				}
+			},   	
+	  	});	
+     //注意，加载完新数据后，必须执行如下代码，注意：若为ajax请求，则需将如下代码放置在处理完ajax响应数据之后
+     	mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+	}
+
+	</script>
+</html>

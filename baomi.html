@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+
+    <style type="text/css">
+    	.mui-content{
+    		margin-top: 12px;
+    	}
+    	.mui-btn{
+    		width: 95%;
+			font-size: 22px;    		
+    		
+    	}
+    	
+    	#mui-bar{
+    background-color: #007aff;
+}
+
+#mui-title{
+     color:#fff;
+     font-size: 22px;     
+}
+#a{
+    color:#fff;
+}
+
+
+.mui-col{
+    margin-right: -4px;
+    display: inline-block;
+}
+
+#sex{
+	    top: 0;
+    right: 12px;
+        height: 37px;
+        line-height:37px;
+/*   padding: 12px 10px; */
+}
+    </style>
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<style>
+			/*跨webview需要手动指定位置*/
+			
+/**			.mui-plus header.mui-bar {
+				display: none!important;
+			}  
+**/			
+			.mui-plus .mui-bar-nav~.mui-content {
+				padding: 0!important;
+			}
+			
+			.mui-plus .plus{
+				display: inline;
+			}
+			
+			.plus{
+				display: none;
+			}
+			
+			#topPopover {
+				position: fixed;
+				top: 16px;
+				right: 6px;
+			}
+			#topPopover .mui-popover-arrow {
+				left: auto;
+				right: 6px;
+			}
+			p {
+				text-indent: 22px;
+			}
+			span.mui-icon {
+				font-size: 14px;
+				color: #007aff;
+				margin-left: -15px;
+				padding-right: 10px;
+			}
+			.mui-popover {
+				height: 200px;
+			}
+			.mui-content {
+				padding: 10px;
+			}
+			.mui-input-row label {
+			    font-family: 'Helvetica Neue',Helvetica,sans-serif;
+			    line-height: 1.1;
+			    float: left;
+			    width: 20%;
+			    padding: 18px 15px;
+			    font-size: 20px;
+			}
+			.mui-input-group .mui-input-row {
+			    height: 60px;
+			}
+			#psex{
+			 	font-size: 22px;			    
+			}
+			#workname{
+			    height: 60px;
+			 	font-size: 22px;			    
+			}
+			#myname{
+			    height: 60px;
+				font-size: 22px;
+			}
+			#tel{
+			    height: 60px;
+				font-size: 22px;
+			}
+			#usex{
+			    height: 60px;
+				font-size: 22px;
+			}
+			#birthday{
+			    height: 60px;
+				font-size: 22px;
+			}
+			.mui-input-group {
+				margin-top: 10px;
+			}
+			.mui-input-group:first-child {
+				margin-top: 50px;
+			}
+			.mui-input-group label {
+				width: 22%;
+			}
+			.mui-input-row label~input,
+			.mui-input-row label~select,
+			.mui-input-row label~textarea {
+				width: 78%;
+			}
+			.mui-checkbox input[type=checkbox],
+			.mui-radio input[type=radio] {
+				top: 6px;
+			}
+			.mui-content-padded {
+				margin-top: 25px;
+			}
+			.mui-btn {
+				padding: 10px;
+			}
+
+			
+		</style>    
+</head>
+<body>
+	<header id="mui-bar" class="mui-bar mui-bar-nav">
+		<a id="a" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 id="mui-title" class="mui-title">报名上班</h1>
+	</header>
+	<div class="mui-content">
+		<form class="mui-input-group"  onsubmit="return checkForm(this)" action="">
+			<div class="mui-input-row">
+				<label>企  业</label>
+				<input type="text" class="mui-input-clear" placeholder="单位名称" id="workname">
+			</div>					
+			<div class="mui-input-row">
+				<label>姓  名</label>
+				<input type="text" class="mui-input-clear" placeholder="请输入姓名" id="myname">
+			</div>			
+			<div class="mui-input-row">
+				<label>手  机</label>
+				<input type="number"  maxlength="11" name="tel" class="mui-input-clear" placeholder="请输入手机" id="tel">
+			</div>
+			<div class="mui-input-row">
+				<label>性  别</label>
+<!--				<a  href="#middlePopover" class="  mui-btn-block mui-btn-outlined"><input id="usex" readonly="readonly" type="text" class="mui-input-clear" placeholder="请选择性别" id="sex"></a>
+-->
+				<input id="usex" readonly="readonly" type="text" class="mui-input-clear" placeholder="请选择性别" id="sex">				
+			</div>
+			<div class="mui-input-row">
+				<label>生  日</label>
+				<input type="date" class="mui-input-clear" placeholder="请输入生日" id="birthday">
+			</div>			
+		
+
+		</form>
+		<div class="mui-content-padded" align="center">
+			<button type="button" class="mui-btn mui-btn-blue" id="baomin">提  交</button>
+		</div>
+	</div>
+	
+<!--	
+		<div id="middlePopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul id="psex" class="mui-table-view mui-table-view-radio"  style="margin-top: 25px;">
+
+	<li class="mui-table-view-cell" style="margin-bottom: 20px;">
+		<a id='man' class="mui-navigate-right" style="padding-left: 80px;padding-bottom: 40px;">男</a>
+	</li>
+	<li class="mui-table-view-cell mui-selected">
+		<a class="mui-navigate-right" style="padding-left: 80px;padding-bottom: 40px;">女</a>
+	</li>				
+						
+-->
+
+					</ul>
+				</div>
+			</div>
+
+		</div>		
+   		<script src="../js/mui.min.js"></script>
+<!--		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			mui('.mui-scroll-wrapper').scroll();
+			mui('body').on('shown', '.mui-popover', function(e) {
+				//console.log('shown', e.detail.id);//detail为当前popover元素
+			});
+			mui('body').on('hidden', '.mui-popover', function(e) {
+				//console.log('hidden', e.detail.id);//detail为当前popover元素
+			});
+		</script>		
+	
+-->	
+	
+	
+</body>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      		
+     function checkForm(o){    var re=/^(13[0-9]{9})|(15[89][0-9]{8})$/;   if(!re.test(o.tel.value)){      alert('请输入正确的手机号码。');      return false;   }}
+ 	
+      	
+      	
+      	
+      	mui.plusReady(function(){
+
+/**
+document.querySelector('.mui-table-view.mui-table-view-radio').addEventListener('selected',function(e){
+//    console.log("当前选中的文本值为："+e.detail.el.innerText);
+	mui('#popover').popover('hide');        
+    var sex=e.detail.el.innerText;
+
+});
+**/
+
+//下面弹出性别
+				var self = plus.webview.currentWebview();
+				/*
+				 * 这里我们可以直接获取到父窗口，获取之前传递到父窗口的值
+				 * http://www.html5plus.org/doc/zh_cn/webview.html#plus.webview.WebviewObject.parent
+				 */
+//				var parent = self.parent();
+//				var result = parent.result;
+//				if (result.usex == "1") {
+//					document.getElementById("usex").value = "男";
+//				} else {
+//					document.getElementById("usex").value = "女";
+//				}
+//				document.getElementById("uschool").value = result.uschool;
+//				document.getElementById("uaddress").value = result.uaddress;
+				// 性别一般是选择的，而不是手写；
+				document.getElementById("usex").addEventListener("tap", function() {
+					plus.nativeUI.actionSheet({
+							cancel: "取消",
+							buttons: [{
+								title: "男"
+							}, {
+								title: "女"
+							}]
+						},
+						function(e) {
+							if (e.index == 1) {
+								document.getElementById("usex").value = "男";
+							} else if (e.index == 2) {
+								document.getElementById("usex").value = "女";
+							}
+						}
+					);
+				});
+
+
+
+//下面弹出性别结束
+            
+      		var self=plus.webview.currentWebview();
+//      		plus.webview.currentview.title;
+ 			var workname = document.getElementById("workname");     	
+      	     workname.value = self.title;      		
+      		
+      		var myname=document.getElementById("myname");      		
+      		var tel=document.getElementById("tel");
+//      		var sex=document.getElementById("sex");
+     		var birthday=document.getElementById("birthday");
+	
+      		var reg=document.getElementById("baomin");
+      		
+      		
+      		baomin.addEventListener('tap',function(){
+      			if(myname.value.length==0){
+      				plus.ui.toast("姓名没填");
+      				return;
+      			}
+      			if(tel.value.length==0){
+      				plus.ui.toast("手机号还没填");
+      				return;
+      			}
+ 			var usex = document.getElementById("usex").value;
+			if (usex == "男") {
+				usex = "1";
+			} else {
+				usex = "0";
+			}      			
+      			
+		      			
+//      			if(nickname.value.length==0){
+//      				plus.ui.toast("昵称不能为空");
+//      				return;
+//      			}
+      			mui.ajax('http://123dadagong.com/index.php/User/Baominapp/dobaomin',{
+      				data:{
+      					workname:workname.value,
+      					myname:myname.value,
+      					mobile:tel.value,
+      					usex:usex,
+      					birthday:birthday.value
+      				},
+      				dataType:'json',//数据格式类型
+      				type:'POST',//http请求类型
+      				timeout:10000,//超时设置
+      				success:function(data){
+      					//处理成功返回的数据
+      					//{'result':1,'data':"注册成功"}
+      					if(data.rst==1){
+alert(usex)	
+//      			mui.openWindow({
+//      				url:'login.html',
+//      				id:'login'
+ //     			})      			
+      						plus.ui.toast(data.message);
+      						mui.back();
+      					}else{
+      						plus.ui.toast(data.data);
+      					}
+      				},
+      				error:function(xhr,text_state){
+//      					ajax_w.close();
+//      					ajax_W = "";
+      					console.log(xhr.readyState +'—'+ xhr.status +'—'+ text_state);
+      				}
+      			})
+      		})
+      	})
+    </script>
+</html>

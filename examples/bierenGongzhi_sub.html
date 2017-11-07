@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>580工资</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+	</head>
+
+	<body>
+		
+		
+		<!--<div>88888888888</div>-->
+		
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul id="hqList" class="mui-table-view mui-table-view-chevron">
+					
+				</ul>
+			</div>
+		</div> 
+		<script src="../js/mui.min.js"></script>
+		<script>			
+						
+		mui.init({
+			pullRefresh: {
+				container: '#pullrefresh',
+				down: {
+					height:50,//可选，默认50，触发下拉刷新拖动距离，
+					auto:true,//可选，默认false,自动下拉刷新一次
+					contentdown:"下拉可以刷新",
+					callback: pulldownRefresh
+				},
+				up: {
+					contentrefresh: '正在加载...',
+					callback: pullupRefresh
+				}
+			}
+		});
+
+			var pageNo = 1;
+			var gongzhiList = {};
+
+		//获取企业列表
+		mui.ajax('https://app.dagong580.cn/Jsonapi/gongzhiList?apikey=5f4cb6c57748665ec03c4afb4e4deae4&page=1',{
+			dataType:'json',
+			async:'false',
+			type:'get',
+			timeout:10000,
+			success:function(data){		
+				console.log("chat.html;datap;112:"+JSON.stringify(data));
+				console.log("chat.html;data;p113:"+JSON.stringify(data.result));
+				var pageAll = data.result.pageEmg.pageAll;
+				var page = data.result.pageEmg.page;	
+				console.log("chat.html#####;page==="+page);
+				document.getElementById('hqList').setAttribute("data-page",page); //将页号存在
+				document.getElementById('hqList').setAttribute("data-pageAll",pageAll); //将总页数存在
+				console.log("chat.html;data-page==="+document.getElementById('hqList').getAttribute("data-page"));
+				 gongzhiList=data.result.gongzhiList;
+				var list=document.getElementById("hqList");
+				var finallist='';
+	  			for(i=gongzhiList.length-1;i>=0;i--){finallist=finallist+'<li data-id="'+i+'"><div style="line-height:42px"> <b>【580后勤】</b>'+gongzhiList[i].factories_name+'</div></li>';}  				 
+				list.innerHTML=finallist;
+			}, 
+			error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
+				console.log('pppp');
+				console.log('AJAX:ERR-|T:'+type+'|错误文本:'+xhr.responseText);
+				if(type == 'timeout') {
+					mui.toast("请求超时：请检查网络")
+				} else {
+					mui.toast('请求失败：' + type + '\n err:' + errorThrown);
+				}
+			},     				
+		}) //AJAX END	
+
+		mui.plusReady(function() {
+			console.log('tab-webview-subpage-chat:plusready!')
+		}); //plus ready end
+			
+		/**
+		 * 下拉刷新具体业务实现
+		 */
+		
+				
+		function pulldownRefresh() {
+			setTimeout(function() {
+//					var table = document.body.querySelector('.mui-table-view');
+//					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+			//获取企业列表
+			var page = document.getElementById('hqList').getAttribute("data-page"); //取得当前页号
+		 	   page = Number(page);
+			console.log("page=="+page)
+			var pageAll = document.getElementById('hqList').getAttribute("data-pageAll"); //取得总页
+			    pageAll = Number(pageAll);
+			console.log("pageAll=="+pageAll)	
+				pageNo = page-1;												
+			if(pageNo <= 1){
+				var h=plus.webview.getWebviewById('bierenGongzhi_sub.html') //获得被点击页面对象，并重载
+				h.reload(true);
+				console.log("下拉刷新具体业务实现；p349;h=="+h)							
+//					pageNo = 1;	
+			};
+			console.log('pageNo==='+pageNo);		
+			
+			var _url = 'https://app.dagong580.cn/Jsonapi/gongzhiList?apikey=5f4cb6c57748665ec03c4afb4e4deae4&class_id=1&page='+pageNo;
+			mui.ajax(_url,{
+				dataType:'json',
+				async:'false',
+				type:'get',
+				timeout:10000,
+				success:function(data){		
+					console.log("bierenGongzhi.html;data-p;114:"+JSON.stringify(data));
+					console.log("bierenGongzhi.html;data;p113:"+JSON.stringify(data.result));
+					var pageAll = data.result.pageEmg.pageAll;
+					var page = data.result.pageEmg.page;	
+	//				var factories_id = data.result.pageEmg.factories_id;	
+					
+					console.log("chat.html#####;page==="+page);
+					document.getElementById('hqList').setAttribute("data-page",page); //将页号存在
+					document.getElementById('hqList').setAttribute("data-pageAll",pageAll); //将总页数存在
+					document.getElementById('hqList').setAttribute("data-factories_id",factories_id); //将总页数存在
+					
+					console.log("bierenGongzhi.html;data-page==="+document.getElementById('hqList').getAttribute("data-page"));
+					 gongzhiList=data.result.gongzhiList;
+					var list=document.getElementById("hqList");
+					var finallist='';
+	
+		  			for(i=gongzhiList.length-1;i>=0;i--){finallist=finallist+'<li data-id="'+i+'"><div style="line-height:42px"> <b>【580后勤】</b>'+gongzhiList[i].factories_name+'</div></li>';}  			
+		 
+					list.innerHTML=finallist;
+	
+				}, 
+				error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
+					console.log('pppp');
+					console.log('AJAX:ERR-|T:'+type+'|错误文本:'+xhr.responseText);
+					if(type == 'timeout') {
+						mui.toast("请求超时：请检查网络")
+					} else {
+						mui.toast('请求失败：' + type + '\n err:' + errorThrown);
+					}
+				},     				
+			})						
+								
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+			}, 1500);
+		}
+		/**
+		 * 上拉加载具体业务实现
+		 */
+		function pullupRefresh() {
+			setTimeout(function() {
+				
+			//获取工资企业列表
+			stop=false;
+			//获取企业列表
+			var page = document.getElementById('hqList').getAttribute("data-page"); //取得当前页号
+			    page = Number(page);
+				console.log("page=="+page)
+			var pageAll = document.getElementById('hqList').getAttribute("data-pageAll"); //取得总页
+			    pageAll = Number(pageAll);
+				console.log("pageAll=="+pageAll)				
+//			if(page == pageAll){
+//			    // 如果没有更多数据了，则关闭上拉加载
+//				mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //参数为true代表没有更多数据了。
+//			};
+			pageNo = page+1;
+			console.log(pageNo);		
+			var _url = 'https://app.dagong580.cn/Jsonapi/gongzhiList?apikey=5f4cb6c57748665ec03c4afb4e4deae4&class_id=1&page='+pageNo;
+			mui.ajax(_url,{
+				dataType:'json',
+				async:'false',
+				type:'get',
+				timeout:10000,
+				success:function(data){		
+					console.log("bierenGongzhi.html;data-p;114:"+JSON.stringify(data));
+					console.log("bierenGongzhi.html;data;p113:"+JSON.stringify(data.result));
+					var pageAll = data.result.pageEmg.pageAll;
+					var page = data.result.pageEmg.page;	
+//							var factories_id = data.result.pageEmg.factories_id;	
+					
+					console.log("chat.html#####;page==="+page);
+					document.getElementById('hqList').setAttribute("data-page",page); //将页号存在
+					document.getElementById('hqList').setAttribute("data-pageAll",pageAll); //将总页数存在
+//							document.getElementById('hqList').setAttribute("data-factories_id",factories_id); //将工厂编号存在
+					
+					console.log("bierenGongzhi.html;data-page==="+document.getElementById('hqList').getAttribute("data-page"));
+					 gongzhiList=data.result.gongzhiList;
+					var list=document.getElementById("hqList");
+					var finallist='';
+	
+		  			for(i=gongzhiList.length-1;i>=0;i--){finallist=finallist+'<li data-id="'+i+'"><div style="line-height:42px"> <b>【580后勤】</b>'+gongzhiList[i].factories_name+'</div></li>';}  			
+		 
+					list.innerHTML=finallist;
+	
+				}, 
+				error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
+					console.log('pppp');
+					console.log('AJAX:ERR-|T:'+type+'|错误文本:'+xhr.responseText);
+					if(type == 'timeout') {
+						mui.toast("请求超时：请检查网络")
+					} else {
+						mui.toast('请求失败：' + type + '\n err:' + errorThrown);
+					}
+				},     				
+			})				
+			mui('#pullrefresh').pullRefresh().endPullupToRefresh(); //refresh completed							
+				
+				
+				
+				
+//					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+//					var table = document.body.querySelector('.mui-table-view');
+//					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+//					for (var i = cells.length, len = i + 20; i < len; i++) {
+//						var li = document.createElement('li');
+//						li.className = 'mui-table-view-cell';
+//						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
+//						table.appendChild(li);
+//					}
+			}, 1500);
+		}
+        if (mui.os.plus) {
+            mui.plusReady(function() {
+                setTimeout(function() {
+                    mui('#pullrefresh').pullRefresh().pullupLoading();
+                }, 1000);
+
+            });
+        } else {
+            mui.ready(function() {
+                mui('#pullrefresh').pullRefresh().pullupLoading();
+            });
+        }
+
+		</script>
+	</body>
+
+</html>

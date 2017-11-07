@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>580</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.css">
+		<!--App自定义的css-->
+<!--		<link rel="stylesheet" type="text/css" href="../css/app.css"/>
+-->		<style>
+/*body
+{
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 20px;
+    line-height: 28px;
+
+    color: #000;
+    background-color: #efeff4;
+
+    -webkit-overflow-scrolling: touch;
+}		*/
+body {
+    color: #737A7A;
+}
+/*.mui-bar
+{
+    position: fixed;
+    z-index: 10;
+    right: 0;
+    left: 0;
+
+    height: 54px;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    border-bottom: 0;
+    background-color: #f7f7f7;
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .85);
+            box-shadow: 0 0 1px rgba(0, 0, 0, .85);
+
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+}*/
+/*.mui-bar-nav
+{
+    top: 0;
+
+    -webkit-box-shadow: 0 1px 6px #ccc;
+            box-shadow: 0 1px 6px #ccc;
+}
+.mui-content
+{
+    background-color: #efeff4;
+
+    -webkit-overflow-scrolling: touch;
+}
+.mui-bar-nav.mui-bar .mui-icon
+{
+    margin-right: -10px;
+    margin-left: -10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}*/
+
+.mui-title
+{
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 54px;
+
+    position: absolute;
+
+    display: block;
+
+    width: 100%;
+    margin: 0 -10px;
+    padding: 0;
+
+    text-align: center;
+    white-space: nowrap;
+
+    color: #000;
+}
+#logo{
+	    /*margin-top: 120px;*/
+    padding-left: 15px;
+        line-height: 52px;
+    max-width: 67px;
+    height: 52px;
+        display: inline-block;
+
+    text-decoration: none;
+
+    -webkit-font-smoothing: antialiased;
+}
+/*.divcss5{text-align:center} */
+/*.mui-bar-nav ~ .mui-content
+{
+    padding-top: 126px;
+}
+
+			.title {
+				/*margin: 20px 15px 10px;*/
+								margin-top: 40px;
+padding: 5px 15px;
+				/*color: #6d6d72;*/
+								color: #000;
+
+				font-size: 20px;
+			}
+.mui-table-view .mui-media-object {
+    line-height: 50px;
+    max-width: 50px;
+    height: 50px;
+}*/
+/*.mui-bar .mui-title
+{
+    right: 40px;
+    left: 40px;
+
+    display: inline-block;
+    overflow: hidden;
+
+    width: auto;
+    margin: 0;
+
+    text-overflow: ellipsis;
+        height: 84px;
+
+}			*/
+				html,body {
+				background-color: #efeff4;
+			}
+			.title{
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			 .oa-contact-cell.mui-table .mui-table-cell {
+				padding: 11px 0;
+				vertical-align: middle;
+			}
+			
+			.oa-contact-cell {
+				position: relative;
+				margin: -11px 0;
+			}
+	
+			.oa-contact-avatar {
+				width: 75px;
+			}
+			.oa-contact-avatar img {
+				border-radius: 0%;
+			}
+			.oa-contact-content {
+				width: 100%;
+			}
+			.oa-contact-name {
+				margin-right: 20px;
+			}
+			.oa-contact-name, oa-contact-position {
+				float: left;
+			}
+			.mui-content{
+				margin-top: 40px;
+			}
+			.li{
+				margin-bottom: 10px;
+			}
+			.mui-table-view{
+				margin-top: 15px;
+			}		
+
+			#mui-bar-botom{
+								background-color: #efeff4;
+
+			}
+			
+			
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		<div id="logo" class="divcss5"  align="center"><img  src="../images/580logo.png" width="100%" height="100%"></div>		
+						<h1 class="mui-title">中国打工580网</h1>
+	
+
+		</header>
+				<nav class="mui-bar mui-bar-tab" id='mui-bar-botom'>
+			<a id="defaultTab" class="mui-tab-item mui-active" href="tab-webview-subpage-about.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+
+			<a class="mui-tab-item" href="tab-webview-subpage-contact.html">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">个人中心</span>
+			</a>
+						<a class="mui-tab-item" href="tab-webview-subpage-chat.html">
+				<span class="mui-icon mui-icon-chatboxes"></span>
+				<span class="mui-tab-label">关于我们</span>
+			</a>
+
+		</nav>
+	<div class="mui-content">			
+				<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed" style="margin-top: 25px;background-color: #efeff4;">
+				<ul class="mui-table-view" style="margin-top: 0px;">
+				<li id="qiozhi"　 class="mui-table-view-cell">
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+						<div class="oa-contact-avatar mui-table-cell">
+<img src="../images/222.png" style="height: 100%;" />
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name">求职</h4>
+									<span class="oa-contact-position mui-h6">各种渠道</span>
+								</div>
+								<p class="oa-contact-email mui-h6">
+									可以在这里了解招聘的相关信息
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+				</ul>
+				<ul class="mui-table-view" >				
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="oa-contact-avatar mui-table-cell">
+								<img src="../images/222.png" />
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name">580企业后勤</h4>
+									<span class="oa-contact-position mui-h6">内部管理</span>
+								</div>
+								<p class="oa-contact-email mui-h6">
+									已入职的朋友们请在这里提交建议.
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+				</ul>
+				<ul class="mui-table-view" >				
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="oa-contact-avatar mui-table-cell">
+								<img src="../images/222.png" />
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name">我要加盟</h4>
+									<span class="oa-contact-position mui-h6">加盟中国打工580网，</span>
+								</div>
+								<p class="oa-contact-email mui-h6">
+									共同打拼美好的明天.
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+				</ul>
+				<ul class="mui-table-view" >				
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="oa-contact-avatar mui-table-cell">
+								<img src="../images/222.png" />
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name">临时工专区</h4>
+									<span class="oa-contact-position mui-h6">跳蚤们看过来</span>
+								</div>
+								<p class="oa-contact-email mui-h6">
+									发布最新的临时工信息
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+				</ul>
+				<!--<ul class="mui-table-view" >				
+				<li id="xiaohua" class="mui-table-view-cell">
+						<a id="xiaohua">
+					
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="oa-contact-avatar mui-table-cell">
+								<img src="../images/xiao.gif" />
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name">幽默笑话</h4>
+									<span class="oa-contact-position mui-h6">经常更新</span>
+								</div>
+								<p class="oa-contact-email mui-h6">
+									笑口要常开，好运总会来，欢迎投稿
+								</p>
+							</div>
+						</div>
+					</div>
+					</a>
+				</li>
+				</ul>-->
+			</ul>		
+<!------->			
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.enterfocus.js"></script>
+		<script src="../js/app.js"></script>
+		<script>
+			(function($, doc) {
+				$.init({
+					statusBarBackground: '#f7f7f7'
+				});
+				$.plusReady(function() {
+					plus.screen.lockOrientation("portrait-primary");
+					var settings = app.getSettings();
+					var state = app.getState();
+					var mainPage = $.preload({
+						"id": 'main',
+						"url": '../examples/media-list.html'
+//						"url": '../examples/media-list.html'
+
+					});
+					var toMain = function() {
+						$.fire(mainPage, 'show', null);
+						setTimeout(function() {
+							$.openWindow({
+								id: 'main',
+								show: {
+									aniShow: 'pop-in'
+								},
+								waiting: {
+									autoShow: false
+								}
+							});
+						}, 0);
+					};
+					//检查 "登录状态/锁屏状态" 开始
+
+				
+					var qiozhi = doc.getElementById('qiozhi');
+					var accountBox = doc.getElementById('account');
+					var passwordBox = doc.getElementById('password');
+					var autoLoginButton = doc.getElementById("autoLogin");
+					var regButton = doc.getElementById('reg');
+					var forgetButton = doc.getElementById('forgetPassword');
+//					loginButton.addEventListener('tap', function(event) {
+//						var loginInfo = {
+//							account: accountBox.value,
+//							password: passwordBox.value
+//						};
+//						app.login(loginInfo, function(err) {
+//							if (err) {
+//								plus.nativeUI.toast(err);
+//								return;
+//							}
+//							toMain();
+//						});
+//					});
+//					$.enterfocus('#login-form input', function() {
+//						$.trigger(loginButton, 'tap');
+//					});
+
+					qiozhi.addEventListener('tap', function(event) {
+						$.openWindow({
+							url: '../examples/tab-webview-main.html',
+							id: 'qiozhi',
+							preload: true,
+							show: {
+								aniShow: 'pop-in'
+							},
+							styles: {
+								popGesture: 'hide'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+					}, false);
+//					forgetButton.addEventListener('tap', function(event) {
+//						$.openWindow({
+//							url: '../html/forget_password.html',
+//							id: 'forget_password',
+//							preload: true,
+//							show: {
+//								aniShow: 'pop-in'
+//							},
+//							styles: {
+//								popGesture: 'hide'
+//							},
+//							waiting: {
+//								autoShow: false
+//							}
+//						});
+//					}, false);
+
+					var backButtonPress = 0;
+					$.back = function(event) {
+						backButtonPress++;
+						if (backButtonPress > 1) {
+							plus.runtime.quit();
+						} else {
+							plus.nativeUI.toast('再按一次退出应用');
+						}
+						setTimeout(function() {
+							backButtonPress = 0;
+						}, 1000);
+						return false;
+					};
+				});
+			}(mui, document));
+		</script>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+	</script>
+</html>

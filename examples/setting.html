@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.css" rel="stylesheet"/>
+    	<link rel="stylesheet" href="../css2/oil.css">
+
+    <style type="text/css">
+body{
+	margin-top: 0;
+    }
+.mui-content{
+	margin-top: 10px;
+	}
+
+a{
+    text-decoration: none;
+    color: #ffffff;
+}
+#page {
+    font-size: 18px;
+    position: relative;
+    z-index: 20;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+ul{
+	background-color: white; 
+	margin: 15px 0;
+	padding: 0 15px;	
+}
+li{
+	list-style-type:none; 
+	/*border-bottom:1px solid #efeff4;*/
+	background-color: white;
+	height: 50px;
+	line-height: 50px;
+}
+</style>
+
+</head>
+<body>
+		<header class="mui-bar mui-bar-nav" style="height: 44px;background-color: #32aec6;">
+		<a id="page" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left">返回</a>
+		<h1 id="title" class="mui-title">设置</h1>
+	</header>
+	
+	<div class="mui-content">
+		<br />
+		<p style="text-indent: 2em;">
+		</p>
+	<ul id='' class="mui-table-view mui-table-view-chevron">
+		<li id="xiaohua" class="mui-table-view-cell" style="height: 50px;line-height: 25px; color:#8f8f94; font-size: 15px;">
+帮助与反馈
+		</li>
+
+		<li id="xiaohua" class="mui-table-view-cell" style="height: 50px;line-height: 25px; color:#8f8f94; font-size: 15px;">
+系统通知
+		</li>
+		
+		<li id="xiaohua" class="mui-table-view-cell" style="height: 50px;line-height: 25px; color:#8f8f94; font-size: 15px;">
+        检查升级
+		</li>
+
+		<!--<li id="xiaohua" class="mui-table-view-cell" style="height: 50px;line-height: 25px; color:#8f8f94; font-size: 15px;">
+        系统投诉
+		</li>-->
+		<li id="xiaohua" class="mui-table-view-cell" style="height: 50px;line-height: 25px; color:#8f8f94; font-size: 15px;">
+        修改密码
+		</li>		
+
+	</ul>
+	<!--<ul id='' class="mui-table-view mui-table-view-chevron">
+		<li id="xiaohua" class="mui-table-view-cell" style="height: 50px;line-height: 25px; color:#8f8f94; font-size: 15px;margin-top: 20px;">
+      安全</li>	
+ 	</ul>-->
+	<ul id='' class="mui-table-view mui-table-view-chevron">
+		<li id="exitApp" class="mui-table-view-cell" style="height: 50px;line-height: 25px; color:#8f8f94; font-size: 15px;margin-top: 20px;">
+      退出</li>	
+ 	</ul> 	
+ 	
+		
+	</div>
+	<!-- start of 报名弹窗 -->
+	<div id="popExitApp"  class="mui-popover pop_confirm pop_addCard " style="display: none;">
+		<div class="hd">退出 打工580APP</div>
+		<div class="bd">
+			<ul class="mui-table-view">
+				<!--<li class="mui-table-view-cell noClick">加油卡类型</li>-->
+				<!--<br /><br />-->
+	
+				<li id="popInput" class="mui-input-row">
+					<!--<label>填写：</label>-->
+					<input id="inputEditRov" type="text" class="mui-input-clear" placeholder="" maxlength="19" value="">	
+	<!--<span id="checkEditCard" class="mui-icon-yes"></span>-->
+					<!-- 文本框输入满19位才显示 -->
+				</li>
+				<li class="mui-table-view-cell noClick">
+					<!-- 文本框输入满19位才显示 -->
+					<p class="name">请问：<span id="owner">你真的要退出么？</span></p>
+					<!-- 自动匹配加油卡持卡人姓名 -->
+				</li>
+				<br />
+			</ul>
+		</div>
+		<div class="fd fd2 clearfix">
+	<!--		<a href="http://127.0.0.1:8020/20160605_kcnzq/pages/oil/oilCard.html#popAddCard" class="mui-btn mui-btn-block">取消</a>-->
+			<button id="submitExitAppBtn" class="mui-btn mui-btn-block" >要退出</button>
+			<a href="" class="mui-btn mui-btn-block">按错了</a>
+		</div>
+	</div>
+	<!-- end of 报名弹窗 -->		
+	
+<!--<script src="../js/mui.min.js"></script>-->
+	
+</body>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+
+      	mui.plusReady(function(){
+
+
+      	})
+      	var exitA = document.getElementById("exitApp");
+      	exitA.addEventListener('tap',function(){
+      		mui("#popExitApp").popover('show',document.getElementById("exitApp"));
+      		document.getElementById("submitExitAppBtn").addEventListener('tap',function(){
+      			
+				var stateText = localStorage.getItem('userInfo') || "{}";
+      			
+		    		var token = localStorage.getItem('$token') || "{}";
+				token =  JSON.parse(token);
+      			var apikey="";
+//    			var hahaha=document.getElementById('inputEditRov').value;
+      			var _url = 'https://app.dagong580.cn/Jsonapi/loginOut?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+				var myProfileInfo = {
+				user_token:token.user_token,
+				user_id:	stateText.user_id,
+				user_phone:	stateText.user_phone,
+  				};
+//				myProfileInfo[thisId.id]=hahaha;
+       			mui.ajax(_url,{
+	  				async: false, //同步
+	  				crossDomain: true, //跨域开关
+	  				xhrFiedlds: {
+	  					withCredentials: true
+	  				},     				      				
+      				dataType:'json',//数据格式类型
+      				type:'POST',//http请求类型
+   					processData: false,//禁用序列化
+					data: myProfileInfo,     
+					headers: {
+		      					'ContentType':'application/json',
+		      					'Connection':'close',
+      					headers:{
+      						'cookie': plus.storage.getItem('cookie')
+      					},
+      				},
+      				timeout:10000,//超时设置
+   			     	beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+			     		console.log('beforesend!' + JSON.stringify(myProfileInfo))
+						plus.nativeUI.closeWaiting(); 
+			      	},
+      				success:function(data){
+      					localStorage.clear();
+      				 	console.log(JSON.stringify(data)) //成功，则打一下返回的数据
+			        		if(data.status=='success'){
+			        			
+   					        plus.runtime.quit();			        			
+							
+							mui('.mui-popover').popover('hide');
+      						plus.ui.toast(data.msg);
+      					}else{
+      						plus.ui.toast(data.msg);
+      					}
+      				},
+      				error:function(xhr,text_state){
+      					console.log(xhr.readyState +'—'+ xhr.status +'—'+ text_state);  					
+      				}
+      			})   //ajax-end     			
+      			
+      			
+      			
+      			
+      			
+      			
+      			
+      			
+      			
+      			
+      			
+ //------------------------------------------     			
+//				var _token = localStorage.getItem('$token') || "{}";
+//    			console.log(_token);
+//    			_token = JSON.parse(_token);
+//    			var myInfo = {
+//    				user_token:_token.user_token
+//    			};
+//    			console.log(_token.user_token);
+//    			var _url = 'https://app.dagong580.cn/Jsonapi/loginOut?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+//    			mui.ajax(_url,{
+//    				async:false,
+//    				crossdomain:true,
+//    				xhrFiedlds:{
+//    					withCredentials:true
+//    				},
+//    				dataType:'json',
+//    				type:'POST',
+//    				processData:true,
+//    				data:myInfo,
+//    				headers:{
+//    					'contentType':'applecation/json',
+//    					'connetion':'close',      					
+//    				},
+//    				timeout:10000,
+//    				beforeSend:function(){
+//    					console.log('beforesend!'+JSON.stringify(myInfo))
+//    				},
+//    				success:function(data){
+//    					console.log(data);
+//    					       plus.runtime.quit();
+//
+//    				}
+//    			})
+      			
+      			
+      			
+      			
+  			});	//触发上传	
+      	});    	
+    </script>
+</html>

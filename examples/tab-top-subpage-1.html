@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.title {
+				padding: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+				background-color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div class="title">
+					这是临时工工资考勤资料的工厂列表，请点击相对应的厂名进入...
+				</div>
+				<ul id="hqList" class="mui-table-view mui-table-view-chevron">
+					<li class="mui-table-view-cell">
+						<a href="" class="mui-navigate-right">临时工工厂-Item 1</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a href="" class="mui-navigate-right">临时工工厂-Item 2</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a href="" class="mui-navigate-right">临时工工厂-Item 3</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a href="" class="mui-navigate-right">临时工工厂-Item 4</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a href="" class="mui-navigate-right">临时工工厂-Item 5</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script>
+	mui.init({
+	  wipeBack: true,		
+	  pullRefresh : {
+		container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+		down : {
+		  height:50,//可选,默认50.触发下拉刷新拖动距离,
+		  auto: false,//可选,默认false.自动下拉刷新一次
+		  contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+		  contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+		  contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+		  callback :pulldownRefresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+		},
+		up: {
+			contentrefresh: '正在加载...',
+			callback: pullupRefresh
+//                  height: 50,
+//                  auto: false,
+//                  contentinit: '上拉显示更多',
+//                  contentdown: '上拉显示更多',
+//                  contentrefresh: '正在加载...',
+//                  contentnomore: '没有更多数据了',
+//					contentnomore: "没有更多数据了"
+//                  duration: 300					
+		}		
+	  }
+	});
+	
+	
+	mui.plusReady(function(){	
+		console.log('tab-webview-subpage-about.html--预载');	
+	
+	});	
+	setTimeout(function(){	
+		//首次加载列表
+		mui.ajax('https://app.dagong580.cn/Jsonapi/gongzhiList?apikey=5f4cb6c57748665ec03c4afb4e4deae4&class_id=1&page=1',{
+			dataType:'json',
+			async:'false',		     			
+			type:'get',
+			timeout:10000,
+			success:function(data){
+				console.log('首次加载列表;tab-top-subpage-1.html;L94-----:'+JSON.stringify(data));
+				console.log('首次加载列表;tab-top-subpage-1.html;L95-----:'+JSON.stringify(data.result));
+				var pageAll = data.result.pageEmg.pageAll;
+				var page = data.result.pageEmg.page;	
+				console.log("tab-top-subpage-1.html;L98#####;page==="+page);
+				document.getElementById('hqList').setAttribute("data-page",page); //将页号存在
+				document.getElementById('hqList').setAttribute("data-pageAll",pageAll); //将总页数存在
+				console.log("about.html;data-page==="+document.getElementById('hqList').getAttribute("data-page"));	
+
+				var gongzhiList=data.result.gongzhiList;
+				console.log('pullrefressh_with_tab_gongzhi.html;L223;gongzhiList[0].factories_name==='+gongzhiList[0].factories_name);	
+				var list=document.getElementById("hqList");
+				var finallist='';	
+
+				for(i=gongzhiList.length-1;i>=0;i--){
+		  			finallist=finallist+'<li data-id="'+i+'" class="mui-table-view-cell"><a class="mui-navigate-right">'+gongzhiList[i].factories_name+'</a></li>';					
+				}
+	   
+				list.innerHTML=finallist;
+						
+				mui('#hqList').on('tap','li',function(){
+
+
+				console.log('factries_name:gongzhiList[this.getAttribute,===='+ gongzhiList[this.getAttribute('data-id')].factories_name);
+				
+			
+					mui.openWindow({
+						url:'factoriesgongzhi_main.html',
+						id:'factoriesgongzhi_main',
+						extras:{
+							txt: gongzhiList[this.getAttribute('data-id')].factories_name,
+							factories_id: gongzhiList[this.getAttribute('data-id')].factories_id
+						}
+					})
+				})
+			}, 
+			error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
+				console.log('pppp');
+				console.log('AJAX:ERR-|T:'+type+'|错误文本:'+xhr.responseText);
+				if(type == 'timeout') {
+					mui.toast("请求超时：请检查网络")
+				}else{
+					mui.toast('请求失败：' + type + '\n err:' + errorThrown);
+				}
+			},      						
+	  	});	
+  	},1000); //首次加载延时	
+	
+	
+	
+	
+	/**
+	 * 下拉刷新具体业务实现
+	 */
+	function pulldownRefresh() {	
+	
+	}	//下拉刷新 end
+			console.log("下拉刷新具体业务实现；p414;下拉刷新结束")	
+	
+	
+	
+	
+	
+	
+	
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for(var i = cells.length, len = i + 20; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '<a class="mui-navigate-right">推荐-Item ' + (i + 1) + '</a>';
+						table.appendChild(li);
+					}
+				}, 1000);
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+var _url = '服务器IP地址或接口地址，不能用localhost';
+var logininfo = {
+	username: 'username', //POST方法提交的用户名
+	password: 'password' //POST方法提交的密码
+}
+mui.ajax(_url, {
+	data: logininfo,
+	async: false, //同步
+	crossDomain: true, //跨域开关
+	xhrFields: {
+		withCredentials: true
+	},
+	dataType: 'json', //要求服务器返回json格式数据
+	type: 'post', //HTTP请求类型，要和服务端对应，要么GET,要么POST
+	headers: {
+		headers: {
+			'cookie': plus.storage.getItem('cookie')
+		},
+	},
+	timeout: 10000, //超时时间设置为10秒；
+	beforeSend: function() { //发送之前，可以打一下看看提交的参数（如果是变量）
+		console.log('beforesend!' + JSON.stringify(logininfo))
+		plus.nativeUI.showWaiting(); //关闭转圈	
+	},
+	success: function(data) {
+		console.log(JSON.stringify(data)) //成功，则打一下返回的数据
+			//核心写在这里
+	},
+	error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
+		console.log('AJAX:ERR-|T:' + type + '|错误文本:' + xhr.responseText);
+		if(type == 'timeout') {
+			mui.toast("请求超时：请检查网络")
+		} else {
+			mui.toast('请求失败：' + type + '\n err:' + errorThrown);
+		}
+	},
+	complete: function() {
+		console.log('userLogin:关闭转圈')
+		plus.nativeUI.closeWaiting(); //关闭转圈	
+	}
+}); //ajax end		
+		
+		
+		
+	</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>580</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.css">
+		<link rel="stylesheet" href="../css2/oil.css">
+
+		<link href="../css/style.css" rel="stylesheet" />
+		
+		<style>
+		html,
+		body {
+			background-color: #efeff4;
+		}
+		
+		.title {
+			padding: 20px 15px 10px;
+			color: #6d6d72;
+			font-size: 15px;
+			background-color: #fff;
+		}
+		span{ 
+			display:block;
+		letter-spacing:0.1em
+		}
+		#topPopover {
+			position: fixed;
+			top: 16px;
+			right: 6px;
+		}
+		#topPopover .mui-popover-arrow {
+			left: auto;
+			right: 6px;
+		}
+		/*.mui-popover {
+			height: 300px;
+		}*/
+		.mui-btn-block {
+		    font-size: 14px;
+		    display: block;
+		    width: 100%;
+		    margin-bottom: 5px;
+		    padding: 10px 0;
+		}			
+		.wenda{
+			font-size: 13px;
+		}
+		.da{
+			font-size: 12px;
+			color: #C0C0C0;			
+		}
+		.mui-table-view-chevron .mui-table-view-cell {
+		    padding:10px 35px;
+		}
+
+		#calltel{
+			Z-INDEX: 20;
+			   position: fixed;
+			  right:30px;
+			 bottom: 100px;
+		 /*width: 100%;*/
+		}
+.login{
+	width:60px;
+	height:60px;
+	border-radius:50%;
+	background-color: #FFFFFF;
+	border:solid #00CCCC 1px;;
+	line-height: 60px;
+	text-align: center;
+	color: #00CCCC;
+	font-size: 15px;
+	
+}
+
+
+
+		</style>
+	</head>
+
+	<body>
+
+	<div id="calltel">
+		<a href="#popAddCard"><div class="login">提 问</div></a>
+			<!--<a href="#popAddCard"><div id='' class="login"><span style="height: 26px; line-height: 55px;">提问</span>-->					
+
+</div>
+
+	<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+		<div class="mui-scroll">
+
+
+				<ul id='hqList' class="mui-table-view mui-table-view-chevron">
+					<!--<li id="xiaohua" class="mui-table-view-cell">
+						<span class="wenda">问：<label>厂里有宿舍么</label></span>
+					<span class="da">答：有的</span>
+					</li>-->
+
+				</ul>
+		</div>				
+	</div>
+			
+	<!-- start of 添加加油卡弹窗 -->
+	<div id="popAddCard" class="mui-popover pop_confirm pop_addCard" style="display: none;">
+		<div class="hd">提交你关心的问题</div>
+		<div class="bd">
+			<ul class="mui-table-view">
+				<!--<li class="mui-table-view-cell noClick">加油卡类型</li>-->
+				<br />
+	
+	
+				<li class="mui-input-row">
+					<!--<label>评语：</label>-->
+					<textarea id="textare" style="float: left; width:280px;height:50px;background-color:transparent;font-size: 12px;" placeholder="在这里填写你的问题..." rows="3" maxlength="200"></textarea>
+					<!--<span id="checkEditCard" class="mui-icon-yes"></span>-->
+					<!-- 文本框输入满19位才显示 -->
+				</li>			
+			</ul>
+		</div>
+		<br />
+		<div class="fd fd2 clearfix">
+			<a href="http://127.0.0.1:8020/20160605_kcnzq/pages/oil/oilCard.html#popAddCard" class="mui-btn mui-btn-block">取消</a>
+			<button id="submitAddCardBtn" class="mui-btn mui-btn-block" >提交</button>
+		</div>
+	</div>			
+			
+			
+	<script src="../js/mui.min.js"></script>
+	<script>
+		mui.init({
+			swipeBack: true,
+			pullRefresh: {
+				container: '#pullrefresh',
+				down: {
+					callback: pulldownRefresh
+				},
+				up: {
+					contentrefresh: '正在加载...',
+					callback: pullupRefresh
+				}
+			}
+//			var h=plus.webview.currentWebview() //获得被点击页面对象，
+//			mui.fire(h,'factoriesId',{
+//				factoriesId:factoriesId
+//			});				
+		}); //init end
+
+		mui.plusReady(function() {
+			var self = plus.webview.currentWebview();
+			window['factories_id'] = self.factoriesId;
+     		 console.log('factories_id=========='+self.factoriesId);
+		
+			console.log('tab-webview-580houqin-b.html:plusready!')
+			var token = localStorage.getItem('$token') || "{}";
+			token =  JSON.parse(token);	
+			
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					var _url = 'https://app.dagong580.cn/Jsonapi/frontAskList?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+					var myProfileInfo = {								
+						user_token:token.user_token,
+						factories_id:factories_id
+//						page:30
+//						goods_id:22
+					};
+	       			mui.ajax(_url,{
+	 		      				async: false, //同步
+			      				crossDomain: true, //跨域开关
+			      				xhrFiedlds: {
+			      					withCredentials: true
+			      				},     					      				
+	      				dataType:'json',//数据格式类型
+	      				type:'POST',//http请求类型
+	 					processData: false,//禁用序列化
+						data: myProfileInfo,
+						headers: {
+			      					'ContentType':'application/json',
+			      					'Connection':'close',
+			      				},
+	      				timeout:10000,//超时设置
+	 		      		beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+			     		console.log('beforesend!' + JSON.stringify(myProfileInfo))
+						plus.nativeUI.closeWaiting(); 
+			      	},
+	      				success:function(data){
+	      					console.log('下拉刷新具体业务实现;ajax.sucess;p279-----:'+JSON.stringify(data));
+							console.log("580huougin-b.html;data;P280:"+JSON.stringify(data));
+							console.log("580huougin-b.html;data;p281:"+JSON.stringify(data.result));
+							var pageAll = data.result.pageEmg.pageAll;
+							var page = data.result.pageEmg.page;	
+							console.log("580huougin-b.html#####;page==="+page);
+							document.getElementById('hqList').setAttribute("data-page",page); //将页号存在
+							document.getElementById('hqList').setAttribute("data-pageAll",pageAll); //将总页数存在
+							console.log("580huougin-b.html;data-page==="+document.getElementById('hqList').getAttribute("data-page"));
+							var frontAskList=data.result.frontAskList;
+							var list=document.getElementById("hqList");
+							var finallist='';
+							for(i=frontAskList.length-1;i>=0;i--){
+								if(null ===(frontAskList[i].reply_ask_content))
+					  			{finallist=finallist+'<li data-id="'+i+'" class="mui-table-view-cell"><div style="line-height:32px"> '+frontAskList[i].ask_content+'</div></li>';}else{
+					  			{finallist=finallist+'<li data-id="'+i+'" class="mui-table-view-cell"><div style="line-height:32px"> <span class="wenda"><label>'+frontAskList[i].ask_content+'</label></span><span class="da">答：'+frontAskList[i].reply_ask_content+'</span></div></li>';}										
+								}								
+							}
+
+		 
+							list.innerHTML=finallist;
+
+	      				},
+	      				error:function(xhr,text_state){
+	      					console.log(xhr.readyState +'—'+ xhr.status +'—'+ text_state);  					
+	      				}
+	      			})   //ajax-end				
+			
+			}); //plus ready end
+			
+
+			
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				console.log('下拉刷新具体业务实现;;p248');
+				var token = localStorage.getItem('$token') || "{}";
+				token =  JSON.parse(token);					
+				setTimeout(function() {
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					var _url = 'https://app.dagong580.cn/Jsonapi/frontAskList?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+					var myProfileInfo = {								
+						user_token:token.user_token,
+//						page:30
+//						goods_id:22
+					};
+	       			mui.ajax(_url,{
+	 		      				async: false, //同步
+			      				crossDomain: true, //跨域开关
+			      				xhrFiedlds: {
+			      					withCredentials: true
+			      				},     					      				
+	      				dataType:'json',//数据格式类型
+	      				type:'POST',//http请求类型
+	 					processData: false,//禁用序列化
+						data: myProfileInfo,
+						headers: {
+			      					'ContentType':'application/json',
+			      					'Connection':'close',
+			      				},
+	      				timeout:10000,//超时设置
+	 		      		beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+			     		console.log('beforesend!' + JSON.stringify(myProfileInfo))
+						plus.nativeUI.closeWaiting(); 
+			      	},
+	      				success:function(data){
+	      					console.log('下拉刷新具体业务实现;ajax.sucess;p279-----:'+JSON.stringify(data));
+							console.log("580huougin-b.html;data;P280:"+JSON.stringify(data));
+							console.log("580huougin-b.html;data;p281:"+JSON.stringify(data.result));
+							var pageAll = data.result.pageEmg.pageAll;
+							var page = data.result.pageEmg.page;	
+							console.log("580huougin-b.html#####;page==="+page);
+							document.getElementById('hqList').setAttribute("data-page",page); //将页号存在
+							document.getElementById('hqList').setAttribute("data-pageAll",pageAll); //将总页数存在
+							console.log("580huougin-b.html;data-page==="+document.getElementById('hqList').getAttribute("data-page"));
+							var frontAskList=data.result.frontAskList;
+							var list=document.getElementById("hqList");
+							var finallist='';
+							for(i=frontAskList.length-1;i>=0;i--){
+								if(null ===(frontAskList[i].reply_ask_content))
+					  			{finallist=finallist+'<li data-id="'+i+'" class="mui-table-view-cell"><div style="line-height:42px"> '+frontAskList[i].ask_content+'</div></li>';}else{
+					  			{finallist=finallist+'<li data-id="'+i+'" class="mui-table-view-cell"><div style="line-height:42px"> <span class="wenda"><label>'+frontAskList[i].ask_content+'</label></span><span class="da">答：'+frontAskList[i].reply_ask_content+'</span></div></li>';}										
+								}								
+							}
+	 
+							list.innerHTML=finallist;
+
+	      				},
+	      				error:function(xhr,text_state){
+	      					console.log(xhr.readyState +'—'+ xhr.status +'—'+ text_state);  					
+	      				}
+	      			})   //ajax-end					
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1000);
+			}; //下拉刷新 end
+
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				var token = localStorage.getItem('$token') || "{}";
+				token =  JSON.parse(token);	
+				setTimeout(function() {
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					
+					var page = document.getElementById('hqList').getAttribute("data-page"); //取得当前页号
+					    page = Number(page);
+						console.log("page=="+page)
+					var pageAll = document.getElementById('hqList').getAttribute("data-pageAll"); //取得总页
+					    pageAll = Number(pageAll);
+						console.log("pageAll=="+pageAll)				
+					if(page == pageAll){
+					    // 如果没有更多数据了，则关闭上拉加载
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true); //参数为true代表没有更多数据了。
+					};
+					pageNo = page+1;
+					console.log(pageNo);					
+					var _url = 'https://app.dagong580.cn/Jsonapi/frontAskList?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+					var myProfileInfo = {								
+						user_token:token.user_token,
+						page:pageNo
+//						goods_id:22
+					};
+	       			mui.ajax(_url,{
+	 		      				async: false, //同步
+			      				crossDomain: true, //跨域开关
+			      				xhrFiedlds: {
+			      					withCredentials: true
+			      				},     					      				
+	      				dataType:'json',//数据格式类型
+	      				type:'POST',//http请求类型
+	 					processData: false,//禁用序列化
+						data: myProfileInfo,
+						headers: {
+			      					'ContentType':'application/json',
+			      					'Connection':'close',
+			      				},
+	      				timeout:10000,//超时设置
+	 		      		beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+			     		console.log('beforesend!' + JSON.stringify(myProfileInfo))
+						plus.nativeUI.closeWaiting(); 
+			      	},
+	      				success:function(data){
+	      					console.log('上拉加载具体业务实现;ajax.sucess;p343-----:'+JSON.stringify(data));
+							console.log("580huougin-b.html;data;p344:"+JSON.stringify(data));
+							console.log("580huougin-b.html;data;p345:"+JSON.stringify(data.result));
+							var pageAll = data.result.pageEmg.pageAll;
+							var page = data.result.pageEmg.page;	
+							console.log("580huougin-b.html#####;page==="+page);
+							document.getElementById('hqList').setAttribute("data-page",page); //将页号存在
+							document.getElementById('hqList').setAttribute("data-pageAll",pageAll); //将总页数存在
+							console.log("580huougin-b.html;data-page==="+document.getElementById('hqList').getAttribute("data-page"));
+							var frontAskList=data.result.frontAskList;
+							var list=document.getElementById("hqList");
+							var finallist='';
+							for(i=frontAskList.length-1;i>=0;i--){
+								if(null ===(frontAskList[i].reply_ask_content))
+					  			{finallist=finallist+'<li data-id="'+i+'" class="mui-table-view-cell"><div style="line-height:42px"> '+frontAskList[i].ask_content+'</div></li>';}else{
+					  			{finallist=finallist+'<li data-id="'+i+'" class="mui-table-view-cell"><div style="line-height:42px"> <span class="wenda"><label>'+frontAskList[i].ask_content+'</label></span><span class="da">答：'+frontAskList[i].reply_ask_content+'</span></div></li>';}										
+								}								
+							}
+
+		 
+							list.innerHTML=finallist;
+//
+
+	      				},
+	      				error:function(xhr,text_state){
+	      					console.log(xhr.readyState +'—'+ xhr.status +'—'+ text_state);  					
+	      				}
+	      			})   //ajax-end					
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1000);				
+
+
+			}; //上拉加载end
+			
+
+	//提问弹窗 AJAX
+//	  var _token = localStorage.getItem('$token');
+
+
+	  var woTuiJian = document.getElementById('submitAddCardBtn');
+	  woTuiJian.addEventListener('tap',function(){
+	  	console.log('580houqi-b.html;提问弹窗；L401;')
+		var token = localStorage.getItem('$token') || "{}";
+		token =  JSON.parse(token);	
+	    var ask_content = document.getElementById('textare').value;
+	    console.log(ask_content);
+	  	var _url = 'https://app.dagong580.cn/Jsonapi/addFrontAsk?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+	  	var my_data = {
+			front_ask_content:ask_content,       							
+	  		user_token:token,
+	  		factories_id:window['factories_id']
+	  	};
+	  	console.log('my_data===='+my_data);
+	  	mui.ajax(_url,{
+			async: false, //同步
+			crossDomain: true, //跨域开关
+			xhrFiedlds: {
+				withCredentials: true
+			},     
+	  		data:my_data,
+            dataType: 'json', 
+            type: 'POST', 
+            	processData: false,//禁用序列化
+            timeout: 10000, 
+	     	beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+	     		console.log('beforesend!' + JSON.stringify(my_data))
+	//		      		plus.nativeUI.showWaiting(); //关闭转圈  
+				plus.nativeUI.closeWaiting(); 
+	      	},                   
+            success: function(data) { 
+	            	console.log('------------------------------');
+	            	console.log(JSON.stringify(data));
+	            console.log('上传成功'); 
+				mui('.mui-popover').popover('hide');
+                pullupRefresh();				
+//				alert(data.result);	
+
+            }, 
+            error: function(xhr, type, errorThrown) { 
+                mui('.mui-popover').popover('hide');               
+                mui.toast('网络异常，请稍后再试！');
+            } 
+        });  //ajax end
+        });         		
+		</script>
+
+		<SCRIPT type="text/javascript">    
+		function textdown(e) {
+		    textevent = e;
+		    if (textevent.keyCode == 8) {
+		        return;
+		    }
+		    if (document.getElementById('textarea').value.length >= 100) {
+		        alert("大侠，手下留情，此处限字100")
+		        if (!document.all) {
+		            textevent.preventDefault();
+		        } else {
+		            textevent.returnValue = false;
+		        }
+		    }
+		}
+		function textup() {
+		    var s = document.getElementById('textarea').value;
+		    //判断ID为text的文本区域字数是否超过100个 
+		    if (s.length > 100) {
+		        document.getElementById('textarea').value = s.substring(0, 100);
+		    }
+		}
+		</SCRIPT> 
+		
+		
+	</body>
+
+</html>

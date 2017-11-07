@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello 580</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.css">
+		<!--App自定义的css-->
+		<!--<link rel="stylesheet" type="text/css" href="../css/app.css"/>-->
+<style>
+body {
+    color: #737A7A;
+}
+
+
+.mui-title
+{
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 54px;
+
+    position: absolute;
+
+    display: block;
+
+    width: 100%;
+    margin: 0 -10px;
+    padding: 0;
+
+    text-align: center;
+    white-space: nowrap;
+
+    color: #000;
+}
+#logo{
+	    /*margin-top: 120px;*/
+    padding-left: 15px;
+        line-height: 52px;
+    max-width: 67px;
+    height: 52px;
+        display: inline-block;
+
+    text-decoration: none;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+
+
+	html,body {
+	background-color: #efeff4;
+}
+.title{
+	margin: 20px 15px 10px;
+	color: #6d6d72;
+	font-size: 15px;
+}
+ .oa-contact-cell.mui-table .mui-table-cell {
+	padding: 11px 0;
+	vertical-align: middle;
+}
+
+.oa-contact-cell {
+	position: relative;
+	margin: -11px 0;
+}
+
+.oa-contact-avatar {
+	width: 75px;
+}
+.oa-contact-avatar img {
+	border-radius: 0%;
+}
+.oa-contact-content {
+	width: 100%;
+}
+.oa-contact-name {
+	margin-right: 20px;
+}
+.oa-contact-name, oa-contact-position {
+	float: left;
+}
+.mui-content{
+	margin-top: 40px;
+}
+.li{
+	margin-bottom: 10px;
+}
+.mui-table-view{
+	margin-top: 15px;
+}
+#mui-bar-botom{
+	background-color: #efeff4;
+
+}
+.mui-bar-tab .mui-tab-item.mui-active {
+    color: #32aec6;
+}			
+.mui-bar-tab .mui-tab-item {
+    color: #737A7A;
+}
+#pbar{
+	background-color: #e2e2e2;
+}
+.mui-table-view::before {
+    height: 0;
+}
+.mui-table-view::after {
+    height: 0;
+}
+</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" >
+			<div id="logo" class="divcss5"  align="center"><img  src="../images/580logo.png" width="100%" height="100%"></div>		
+			<h1 class="mui-title">中国打工580网</h1>
+		</header>		
+		<nav id="pbar" class="mui-bar mui-bar-tab">
+			<a id="pager" class="mui-tab-item mui-active" href="#tabbar">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a id="personal" class="mui-tab-item" href="#tabbar-with-contact">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">个人中心</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-map">
+				<span class="mui-icon mui-icon-chatboxes"></span>
+				<span class="mui-tab-label">关于我们</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			
+<!--<div class="mui-content">-->
+			<div id="tabbar" class="mui-control-content mui-active">
+
+				<ul id="ulid" class="mui-table-view mui-table-view-striped mui-table-view-condensed" style="margin-top: 5px;background-color: #efeff4;">
+				<ul class="mui-table-view" style="margin-top: 0px;">
+				<li id="qiozhi" data-type = "defaultTab" class="mui-table-view-cell">
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+<!--							<div class="oa-contact-avatar mui-table-cell">
+-->							<div class="oa-contact-avatar mui-table-cell">
+
+<img src="../images/222-new.png" style="height: 85%;" />
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name">求职</h4>
+									<span class="oa-contact-position mui-h6">各种渠道</span>
+								</div>
+								<p class="oa-contact-email mui-h6">
+									可以在这里了解招聘的相关信息
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+				</ul>
+				<ul class="mui-table-view" >				
+				<li id="580houqin" data-type="bTab" class="mui-table-view-cell">
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="oa-contact-avatar mui-table-cell">
+								<!--<img src="../images/222.png" />-->
+<img src="../images/222-new.png" style="height: 85%;" />
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name">580企业后勤</h4>
+									<span class="oa-contact-position mui-h6">内部管理</span>
+								</div>
+								<p class="oa-contact-email mui-h6">
+									已入职的朋友们请在这里提交建议.
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+				</ul>
+				<ul class="mui-table-view" >				
+				<div id="kaoQinGongzhi" data-type="bTab" class="mui-table-view-cell">
+				<a class="mui-tab-item" href="">
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="oa-contact-avatar mui-table-cell">
+								<!--<img src="../images/222.png" />-->
+<img src="../images/222-new.png" style="height: 85%;" />
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name">考勤核对专区</h4>
+									<span class="oa-contact-position mui-h6">考勤及工资</span>
+								</div>
+								<p class="oa-contact-email mui-h6">
+									已认证的伙伴们在这里查看工资及考勤信息.
+								</p>
+							</div>
+						</div>
+					</div>
+				</a>
+				</div>
+				</ul>				
+				<ul class="mui-table-view" >				
+				<li id="jiameng" data-type="cTab"  class="mui-table-view-cell">
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="oa-contact-avatar mui-table-cell">
+								<!--<img src="../images/222.png" />-->
+								<img src="../images/222-new.png" style="height: 85%;" />
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name">我要加盟</h4>
+									<span class="oa-contact-position mui-h6">加盟中国打工580网，</span>
+								</div>
+								<p class="oa-contact-email mui-h6">
+									共同打拼美好的明天.
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+				</ul>
+				<ul class="mui-table-view" >				
+				<li id="linsigong" data-type="dTab"  class="mui-table-view-cell">
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="oa-contact-avatar mui-table-cell">
+								<!--<img src="../images/222.png" />-->
+								<img src="../images/222-new.png" style="height: 85%;" />
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name">临时工专区</h4>
+									<span class="oa-contact-position mui-h6">跳蚤们看过来</span>
+								</div>
+								<p class="oa-contact-email mui-h6">
+									发布最新的临时工信息
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+				</ul>
+			</ul>				
+			</div>
+			
+			<div id="tabbar-with-contact" class="mui-control-content" style="background-color:#efeff4;margin-top: -25px;padding:0;">
+			<ul id="personal_center" style="padding: 0; ">
+				<ul class="mui-table-view" style="border: 0; font-size: 13px;">
+				<li id="my_profile.html"  data-herf="../examples/my_profile.html"  class="mui-table-view-cell" style="padding: 5px 15px;">
+				<a style="margin-top: -25px;margin-bottom: -6px;" ><div style="margin:0px auto;padding:0 ; text-align:left;  background-color: white;color: black;">
+					<div style="margin: 5px 15px 0 0; float: left;">
+				<img id="avatar" style="height: 65px;width: 65px;" src="" alt="" />
+					</div>
+					<div id="personalName" style="margin: 20px 0 10px;padding:15px 10px 0px 10px;font-size: 16px; ">
+								
+					</div>
+					<!--<div  style="margin: 5px 20px;">
+						昵称：小贝
+					</div>-->
+					<div   style="margin-top: -8px;color: #737A7A;;">
+						帐号：<span id="personalPhone"></span>
+					</div>					
+				</div>
+				</a>
+				</li>
+				</ul>
+<!--				<div class="title" style="float: left; color:white;font-size: 18px; ">马贝贝</div>-->
+				<ul class="mui-table-view" style="font-size: 14px;margin-top: 20px;">
+				<li id="new_message" data-herf="new_message.html" class="mui-table-view-cell" style="padding: 10px 0 10px 15px;">
+					<a class="mui-navigate-right">
+					<img id="xiaoxi" src="../picbak/2.png" style="vertical-align:middle;margin:0 15px 0 10px;" width="28px" height="28px"/>	消息
+					</a>
+				</li>
+				<li  id="my_profile.html"  data-herf="../examples/my_profile.html"  class="mui-table-view-cell" style="padding: 10px 0 10px 15px;">
+					<a class="mui-navigate-right">
+<img src="../picbak/22222.png" style="vertical-align:middle;margin:0 15px 0 10px;" width="28px" height="28px"/>						
+						资料
+					</a>
+				</li>
+			</ul>
+			
+				<ul class="mui-table-view" style="font-size: 14px;margin-top: 20px;">
+				<li id="job_wanted.html" data-herf="job_wanted.html" class="mui-table-view-cell" style="padding: 10px 0 10px 15px;">
+					<a class="mui-navigate-right">
+<img src="../picbak/7.png" style="vertical-align:middle;margin:0 15px 0 10px;" width="28px" height="28px"/>												
+						求职
+					</a>
+				</li>
+				<li id="Referral_Bonus" data-herf="Referral_Bonus.html" class="mui-table-view-cell" style="padding: 10px 0 10px 15px;">
+<a class="mui-navigate-right">
+	<img src="../picbak/55555.png" style="vertical-align:middle;margin:0 15px 0 10px;" width="28px" height="28px"/>												
+
+						奖金
+					</a>
+				</li>
+			</ul>
+
+			<ul class="mui-table-view" style="margin-top: 20px;font-size: 14px;">
+				<li id="My_Collection" data-herf="My_Collection.html" class="mui-table-view-cell" style="padding: 10px 0 10px 15px;">
+					<a class="mui-navigate-right">
+	<img src="../picbak/11111.png" style="vertical-align:middle;margin:0 15px 0 10px;" width="28px" height="28px"/>		
+						收藏
+					</a>
+				</li>
+			</ul>
+
+			<ul    class="mui-table-view" style="margin-top: 20px;  font-size: 14px;">
+				<li id="setting" data-herf="setting.html" class="mui-table-view-cell" style="padding: 10px 0 10px 15px;">
+					<a class="mui-navigate-right">
+	<img src="../picbak/88888.png" style="vertical-align:middle;margin:0 15px 0 10px;" width="28px" height="28px"/>		
+						设置
+					</a>
+				</li>
+			</ul>
+</ul>
+			<!--<ul class="mui-table-view" style="margin-top: 25px;font-size: 13px;">
+				<li class="mui-table-view-cell">
+					<a style="text-align: center;color: #FF3B30;">
+						退出登录
+					</a>
+				</li>
+			</ul>-->
+			</div>			
+
+			<div id="tabbar-with-map" class="mui-control-content">.
+				<div style="font-size: 16px;">
+					<div style="color: #8f8f94;margin-bottom: 0px;text-align:center;">
+						关于我们
+					</div>
+				</div>
+				<div>
+					<div style="text-indent:2em;padding: 15px;font-size: 14px;">
+						这是关于我们空页面，该页面展示 580公司的介绍宣传.
+					</div>
+					</div>
+
+			</div>
+		</div>
+	</body>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.enterfocus.js"></script>
+		<script src="../js/app.js"></script>
+		<script>
+		(function($, doc) {
+			$.init({
+				statusBarBackground: '#f7f7f7'
+			});
+			
+			$.plusReady(function() {
+				var personalButton = doc.getElementById('personal');
+				var settings = app.getSettings();
+				var state = app.getState();
+				personalButton.addEventListener('tap', function(event) {
+					var token = localStorage.getItem('$token') || "{}";
+					token =  JSON.parse(token);
+	      			var apikey="";
+	      			var _url = 'https://app.dagong580.cn/Jsonapi/userInfo?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+	      			mui.ajax(_url,{
+      				async: false, //同步
+      				crossDomain: true, //跨域开关
+      				xhrFiedlds: {
+      					withCredentials: true
+      				},
+      				dataType:'json',  //要求服务器返回josn格式数据
+      				type:'post', //HTTP请求类型，要和服务端对应，要么get ,要么post
+					processData: false,//禁用序列化
+					data: JSON.stringify(token),  
+					headers: {
+      					'ContentType':'application/json',
+      					'Connection':'close',
+      				},
+      				timeout:10000,//超时设置为10秒
+      				beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+      					console.log('beforesend!' + JSON.stringify(token))
+      					plus.nativeUI.closeWaiting(); //关闭转圈
+      				},
+      				success:function(data){
+		      			console.log(JSON.stringify(data)) //成功，则打一下返回的数据				      			
+      					if(data.status=='success'){		
+							document.getElementById("avatar").src=data.result.avatarUrl;		
+							document.getElementById("personalPhone").innerHTML=data.result.user_phone;
+		      				document.getElementById("personalName").innerHTML=data.result.user_t_name;		
+							var userInfo = data.result	
+							localStorage.setItem('userInfo', JSON.stringify(userInfo));
+     					}else{
+      						//登录失败
+      						plus.ui.toast(data.msg);
+      					}
+				     },
+					error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
+						console.log('pppp');
+						console.log('AJAX:ERR-|T:'+type+'|错误文本:'+xhr.responseText);
+						if(type == 'timeout') {
+							mui.toast("请求超时：请检查网络")
+						} else {
+							mui.toast('请求失败：' + type + '\n err:' + errorThrown);
+						}
+					},
+					complete: function() {
+						console.log('userLogin:关闭转圈')
+						plus.nativeUI.closeWaiting(); //关闭转圈	
+					}
+     			}); //ajax end	
+			});  //end -- personalButton.addEventListene
+		
+			
+				//点击工资
+			mui('#kaoQinGongzhi').on('tap', 'a', function() {
+//					console.log('点击了：' + this.innerText);
+				console.log(this.innerText)
+				
+				
+//				$.openWindow({
+//				url: 'tab-580houqin-main.html',
+//				id: 'tab-580houqin-main',
+//				extras:{
+////					txt: factorie
+//				}
+//			})				
+				
+				
+				
+				$.openWindow({
+//					url: '../examples/bierenGongzhi.html',
+//					id: 'bierenGongzhi.html',
+					url: '../examples/tab-top-webview-main.html',
+					id: 'tab-top-webview-main.html',					
+					
+					preload: false,
+					show: {
+						aniShow: 'pop-in'
+					},
+					styles: {
+						popGesture: 'hide'
+					},
+					extras:{
+					},
+					waiting: {
+						autoShow: false
+					}
+				});					
+			});										
+					
+			var subpages = ['tab-webview-subpage-about.html', 'tab-webview-subpage-chat.html', 'tab-webview-subpage-contact.html', 'tab-webview-subpage-setting.html'];
+			var subpage_style = {
+				top: '45px',
+				bottom: '51px'
+			};						
+										
+										
+			var self = mui.preload({
+		    url:'../examples/tab-webview-main.html',
+		    id:'tab-webview-main',
+		    styles:{
+		        popGesture:"hide"
+		    }
+		});										
+
+		for (var i = 0; i < 4; i++) {
+			var temp = {};
+			var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
+				sub.hide();
+			self.append(sub);
+		}
+
+		//列表项点击事件
+		mui('#ulid').on('tap','li',function(){
+			console.log(this.id);
+		
+		//触发详情页面的send事件
+		mui.fire(self,'send',{
+			targetId:'main',
+			firtId:this.getAttribute('data-type')
+		})
+
+		console.log(this.id)
+		console.log(this.getAttribute('data-type'))
+			$.openWindow({
+				url: '../examples/tab-webview-main.html',
+				id: 'tab-webview-main',
+				preload: false,
+				show: {
+					aniShow: 'pop-in'
+				},
+				styles: {
+					popGesture: 'hide'
+				},
+				extras:{
+				},
+				waiting: {
+					autoShow: false
+				}
+			});
+		})
+		//个人中心
+		mui('#personal_center').on('tap','li',function(){	
+			console.log(this.id);
+			//var herf= this.plusGetAttribute('data-herf');
+		//console.log(herf);
+			console.log(this.getAttribute('data-herf'))
+		//console.log(this.getAttribute('data-herf'))
+			$.openWindow({
+				url: this.getAttribute('data-herf'),
+				id: this.id,
+				preload: false,
+				show: {
+					aniShow: 'pop-in'
+				},
+				styles: {
+					popGesture: 'hide'
+				},
+				extras:{
+					
+				},
+				waiting: {
+					autoShow: false
+				}
+			});
+		})
+
+
+		var backButtonPress = 0;
+		$.back = function(event) {
+			backButtonPress++;
+			if (backButtonPress > 1) {
+				plus.runtime.quit();
+			} else {
+				plus.nativeUI.toast('再按一次退出应用');
+			}
+			setTimeout(function() {
+				backButtonPress = 0;
+			}, 1000);
+			return false;
+		};
+	});
+}(mui, document));
+	</script>
+</body>
+	<!--<script>
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+	</script>-->
+</html>

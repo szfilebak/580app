@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="../css/iconbutton.css">
+		<link rel="stylesheet" href="../css/style.css">
+		
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">		
+ 		<link rel="stylesheet" href="../css2/oil.css">
+   
+<style>
+/*#calltel{
+	Z-INDEX: 20;
+   position: fixed;
+  right:40px;
+ bottom: 190px;
+}*/
+.calltel{
+	Z-INDEX: 20;
+   position: fixed;
+  right:10%;
+ bottom: 20%;
+}
+
+
+html,
+body {
+	background-color: #efeff4;
+}
+body {
+    font-family: 'Helvetica Neue',Helvetica,sans-serif;
+    font-size: 13px;
+}
+#mui-bar-botom{
+	background-color: #efeff4;
+
+}
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+#page {
+    font-size: 18px;
+    position: relative;
+    z-index: 20;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+.mui-bar-nav ~ .mui-content {
+    padding-top: 20px;
+}
+
+ .mui-col{
+    margin-right: -4px;
+    display: inline-block;
+}
+#titleqiyie{
+	padding: 10px;
+	
+}
+.bbb{
+	font-size: 12px;
+	text-align:center;
+	background:#ff4777;
+	border:2px solid #ff4777;
+	padding:1px 1px; 
+	margin-right: 2px;
+	border-radius:5px;
+}
+.bbb2{
+	line-height: 30px;
+	font-size: 16px;
+	text-align:center;
+	border:2px solid #ff4777;
+	padding:1px 1px; 
+	 display:inline; 
+	 float:left; 
+	 margin: 4px; 
+	 width:60px; 
+	 height:35px;
+	 color: #000000;
+	 border:2px solid #eaeaea;
+	background-color:#eaeaea;
+	border-radius:5px;
+}
+.divline
+{
+	width:100%;
+	box-shadow: 0px 2px 2px #888888;
+}
+.divline2
+{
+	margin: 10px 6px 10px 6px;
+	margin-bottom:15px;
+	box-shadow: 0px 2px 2px #888888;
+	border-radius:5px;
+}
+.divline3
+{
+	box-shadow: 0px 2px 2px #888888;
+	border-radius:5px;
+}
+.span1{
+	padding-left: 5px;
+	background-color:#CCCCCC;
+	border-radius: 5px 5px 0px 0px;	
+}
+.padtxt{
+	padding: 10px;
+}
+#test *{vertical-align:middle;}
+.type {
+   	/*margin: 0 10px 10px 0;*/
+   	margin: 0 ;
+   	
+    letter-spacing: 1px;
+    position: absolute;
+	color: #fff;
+	text-align: center;
+	font-size: 17px;   
+    bottom: 0;
+	left: 10;
+	background-color: rgba(0,0,0,0.5);
+	width: 100%;
+    height: 30px;
+    line-height: 30px;
+}
+.type2 {
+    margin: 0 10px 5px 0;
+    letter-spacing: 1px;
+    position: absolute;
+    color: black;
+	text-align: center;
+    font-size: 14px;   
+    bottom: 0;
+    left: 10;
+    width: 94%;
+    height: 25px;
+    line-height: 25px;
+}
+img{
+	height:150px;
+	width: 100%;
+}
+.arrow-bottom{ 
+	width: 0;
+	height: 0;
+	border-left: 12px dashed transparent;
+	border-right: 12px dashed transparent;
+	border-top: 15px solid #32aec6;
+	font-size: 0;
+	margin-left: 30px;
+}
+.pop_addCard .bd li.mui-input-row {
+    border-bottom: none;
+}
+</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav" style="height: 44px;background-color: #32aec6;">
+		<a id="page" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left">返回</a>
+		<h1 id="title" class="mui-title"></h1>
+	</header>
+	<div class='calltel'>
+		<a href="tel:0512114">
+		<span class="classTELred">直拨热线</span>
+		</a> 
+	</div>	
+	<nav class="mui-bar mui-bar-tab" style="background-color: #FFFFFF; ">
+		<div id="" class="mui-content ">
+			<div style=" display:inline; float:left;width:33%">
+				<a href="#popAddCard">	
+					<div id="baoMingNav" class="bbb2 divline3" style=" width:100px; line-height: 28px;border:1px solid #ff4777;" > 
+						<span  style="font-size: 14px;">我要报名</span>
+					</div>	
+				</a>
+			</div>
+			<div style=" display:inline; float:left;width:33%">	
+				<a href="#popEditCard">	
+					<div class="bbb2 divline3" style="width:100px;font-size: 14px;">
+						我要推荐 
+					</div>
+				</a>
+			</div>
+			<div style=" display:inline; float:right;margin:0 0 0 0;width:33%">	
+				<a href="#shouchang">	
+					<div  class="bbb2 divline3" style="padding-right: 4px;font-size: 14px;  width:100px">
+						我要收藏
+					</div>
+				</a>
+			</div>
+		</div>
+	</nav>	
+		
+	<div  style="margin: 55px 10px 10px 10px; ">
+		<div  style="background-color: white;position: relative;">			
+			<a id="sliderPic" href="#">
+			</a>
+			<div id="titlePicText" class="type">
+				
+			</div>
+		</div>										
+	</div>
+	<div  style="margin: 0">		
+	<section style="text-align: center; margin-top: -0.8em; margin-bottom: 0.5em; padding-left: 0.5em; padding-right: 0.5em;" >
+		<div class="ng-scope" style="-webkit-transform: rotate(0);line-height: 0px;transform: rotate(0);">
+			<img style="box-sizing: border-box;width: 100%;height: auto !important;text-align: start;" src="../images/detail-2.png">		
+			<div class="type2"><b>
+				补 贴 详 情</b>
+			</div>
+      	</div> 
+     	 <ul style="line-height: 18px;">
+	      	<div id="buTieXiangQin" style="padding: 0 10px;"> 
+				在职满30天，补贴男<font color="red">1000</font>元/女<font color="red">1000</font>元；<br />推荐朋友入职，额外得推荐奖<font color="red">100</font>元；
+	      	</div>
+      	</ul> 
+      	<img class="ng-scope" style="box-sizing: border-box;width: 100%;height: auto !important;text-align: start;" src="../images/detail-1.png">
+	</section>	
+	<div style="background-color:#32aec6 ;padding: 10px;margin:0 10px;color: white;">
+		基本情况：
+	</div>
+	<div style="background-color:white ;padding: 10px;margin: 0 10px;border-bottom:1px solid gainsboro;">
+		综合工资：<span id="zhongHeGongZhi">3500 - 5000</span>元
+	</div>
+	<div style="background-color:white ;padding: 10px;margin: 0 10px;border-bottom:1px solid gainsboro;">
+		招聘人数：<span id="zhaoPinRenShu"></span>人
+	</div>
+	<div style="background-color:white ;padding: 10px;margin: 0 10px;border-bottom:1px solid gainsboro;">
+		报名热度：<span id="baoMingReDu"></span>
+	</div>
+	<div style="background-color:white ;padding: 10px;margin: 0 10px;border-bottom:1px solid gainsboro;">
+		工厂地址：<span id="gongChangDiZhi"></span>
+	</div>
+	<div style="background-color:#32aec6 ;padding: 10px;margin:0 10px;color: white;">
+		打工580网特别提醒：
+	</div>		
+	<div class="arrow-bottom">			
+	</div>
+	<div style="background-color:white ;padding: 10px;margin: 0 10px 10px 10px;">
+	本站不向求职者收取任何费用，凡通过本站报名的求职朋友，凭本人有效身份证件通过以下方式领取。<br />
+	1.通过驻厂管理人员现场领取；<br />
+	2.通过联系客服到打工580网求职中心财务窗口领取；<br />
+	3.通过联系客服，使用银行卡转帐、支付宝、微信等方式领取。<br />
+	</div>
+	<div style="background-color:#32aec6 ;padding: 10px 0;margin:0 10px;color: white;width: 30px;height: 30px; line-height: 15px; float: left;text-align:center">		
+		1
+	</div>
+		<div style="height: 30px; line-height: 35px;">
+			招聘要求
+		</div>
+		<div style="background-color:#32aec6 ;height: 3px;margin:0px 10px;">			
+		</div>
+		
+		<div id="zhaoPinYaoQio" style="background-color:white ;padding: 10px;margin:10px 10px 10px 10px;border-bottom: solid gainsboro;">	
+		</div>	
+		
+		<div style="background-color:#32aec6 ;padding: 10px 0;margin:0 10px;color: white;width: 30px;height: 30px; line-height: 15px; float: left;text-align:center">		
+			2
+		</div>
+		<div style="height: 30px; line-height: 35px;">
+			薪资待遇
+		</div>
+		<div style="background-color:#32aec6 ;height: 3px;margin:0px 10px;">			
+		</div>		
+		
+		<div id="xingZhiDaiYu" style="background-color:white ;padding: 10px;margin:10px 10px 10px 10px;border-bottom: solid gainsboro;">	
+		</div>			
+	</div>
+	
+		<div style="background-color:#32aec6 ;padding: 10px 0;margin:0 10px;color: white;width: 30px;height: 30px; line-height: 15px; float: left;text-align:center">		
+			3
+		</div>
+		<div style="height: 30px; line-height: 35px;">
+			福利待遇
+		</div>
+		<div style="background-color:#32aec6 ;height: 3px;margin:0px 10px;">			
+		</div>		
+		
+		<div id="fuLiDaiYu" style="background-color:white ;padding: 10px;margin:10px 10px 10px 10px;border-bottom: solid gainsboro;">		
+		</div>	
+	
+		<div style="background-color:#32aec6 ;padding: 10px 0;margin:0 10px;color: white;width: 30px;height: 30px; line-height: 15px; float: left;text-align:center">		
+			4
+		</div>
+		<div style="height: 30px; line-height: 35px;">
+			企业简介
+		</div>
+		<div style="background-color:#32aec6 ;height: 3px;margin:0px 10px;">			
+		</div>		
+		
+		<div id="goods_body" style="background-color:white ;padding: 10px;margin:10px 10px 10px 10px;border-bottom: solid gainsboro;">	
+		</div>		
+		<div style="background-color:white ;padding: 10px;margin:10px 10px 45px 10px;border-bottom: solid gainsboro;height: 45px;">	
+
+	</div>
+	
+<!-- start of 报名弹窗 -->
+<div id="popAddCard" class="mui-popover pop_confirm pop_addCard " style="display: none;">
+	<div class="hd">填写有效手机号</div>
+	<div class="bd">
+		<ul class="mui-table-view">
+			<!--<li class="mui-table-view-cell noClick">加油卡类型</li>-->
+			<br /><br />
+
+			<li class="mui-input-row">
+				<label>手机：</label>
+				<input id="_baominPhone" type="text" placeholder="请仔细核对卡号" maxlength="19" value="18828836888">
+				<span id="" class="mui-icon-yes"></span>
+				<!-- 文本框输入满19位才显示 -->
+			</li>
+			<li class="mui-table-view-cell noClick">
+				<!-- 文本框输入满19位才显示 -->
+				<p class="name">注意：<span id="owner">检查一遍，没有填错</span></p>
+				<!-- 自动匹配加油卡持卡人姓名 -->
+			</li>
+			<br />
+		</ul>
+	</div>
+	<div class="fd fd2 clearfix">
+		<a href="http://127.0.0.1:8020/20160605_kcnzq/pages/oil/oilCard.html#popAddCard" class="mui-btn mui-btn-block">取消</a>
+		<button id="submitBaoMingBtn" class="mui-btn mui-btn-block">提交</button>
+	</div>
+</div>
+<!-- end of 报名弹窗 -->	
+
+<!-- start of 推荐弹窗 -->
+<div id="popEditCard" class="mui-popover pop_confirm pop_addCard">
+	<div class="hd">被推荐朋友的姓名手机</div>
+	<div class="bd">
+		<ul class="mui-table-view">
+			<br />
+			<li class="mui-input-row">
+				<label>姓名：</label>
+				<input id="_name" type="text" placeholder="请填你朋友的姓名" maxlength="19" value="">
+				<span id="checkEditCard" class="mui-icon-yes"></span>
+				<!-- 文本框输入满19位才显示 -->
+			</li>
+
+			<li class="mui-input-row">
+				<label>手机：</label>
+				<input id="_tel" type="text" placeholder="请填你朋友的手机" maxlength="19" value="">
+				<span id="checkEditCard" class="mui-icon-yes"></span>
+				<!-- 文本框输入满19位才显示 -->
+			</li>
+			<li class="mui-table-view-cell noClick">
+				<!-- 文本框输入满19位才显示 -->
+				<p class="name">注意：<span id="owner">检查一遍，没有填错</span></p>
+				<!-- 自动匹配加油卡持卡人姓名 -->
+			</li>
+		</ul>
+	</div>
+	<div class="fd fd2 clearfix">
+		<a href="http://127.0.0.1:8020/20160605_kcnzq/pages/oil/oilCard.html#popEditCard" class="mui-btn mui-btn-block">取消</a>
+		<button id="submitEditCardBtn" class="mui-btn mui-btn-block">提交</button>
+	</div>
+</div>
+<!-- end of 推荐弹窗  -->
+
+	
+<!-- start of 收藏成功弹窗 -->
+<div id="shouchang" class="mui-popover pop_confirm pop_addCard " style="display: none;">
+	<div class="hd">中国打工580网求职信息</div>
+	<div class="bd">
+		<ul class="mui-table-view">
+			<!--<li class="mui-table-view-cell noClick">加油卡类型</li>-->
+			<br /><br />
+
+			<li class="mui-input-row">
+				<label></label>
+				<input id="inputEditRov" type="text" placeholder="" maxlength="19" value="你要收藏这条信息么？">
+				<!--<span id="checkEditCard" class="mui-icon-yes"></span>-->
+				<!-- 文本框输入满19位才显示 -->
+			</li>
+			<li class="mui-table-view-cell noClick">
+	
+				<!-- 自动匹配加油卡持卡人姓名 -->
+			</li>
+			<br />
+		</ul>
+	</div>
+	<div class="fd fd2 clearfix">
+		<a href="" class="mui-btn mui-btn-block">取消</a>
+		<button id="submitshouChangCardBtn" class="mui-btn mui-btn-block">确定</button>
+	</div>
+</div>
+<!-- end of 收藏成功弹窗 -->	
+
+	<script type="text/javascript" charset="utf-8">
+	mui.init({
+		swipeBack:true //启用右滑关闭功能
+	});
+	mui.plusReady(function(){
+	  	var _token = localStorage.getItem('$token');
+	  	console.log(_token);
+	 		 _token = JSON.parse(_token);
+	 		 console.log(_token);
+		var div=document.getElementById("sliderPic");	
+		var goodsInfo = localStorage.getItem('$goodsInfo');
+		console.log('detail.html,L404,goodsInfo==='+goodsInfo);
+		var goodsInfo = JSON.parse(goodsInfo);
+		document.getElementById('title').innerHTML = goodsInfo.title;
+		document.getElementById('titlePicText').innerHTML = goodsInfo.title;
+		mui.ajax('https://app.dagong580.cn/Jsonapi/goodsInfo?apikey=5f4cb6c57748665ec03c4afb4e4deae4',{
+			async: false, //同步
+			crossDomain: true, //跨域开关
+				xhrFiedlds: {
+					withCredentials: true
+				},     					
+			dataType:'json',//数据格式类型
+			type:'POST',//http请求类型
+			processData: false,//禁用序列化
+			data: {
+				class_id:goodsInfo.class_id,       					
+				goods_id:goodsInfo.goods_id,
+		  		user_token:_token.user_token				
+			},
+			headers: {
+				'ContentType':'application/json',
+				'Connection':'close',
+			},
+			timeout:10000,//超时设置
+			beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+//				console.log('data = '+goodsInfo.goods_id)
+				plus.nativeUI.closeWaiting(); 
+			},
+			success:function(data){
+				console.log(data);
+				var resultD = data.result;
+					//处理成功返回的数据
+				console.log('detalil.html;L435;成功返回的数据===='+JSON.stringify(resultD)) //成功，则打一下返回的数据
+				window['goods_item']=resultD.goods_item;
+				window['factories_id']=resultD.factories_id;
+				
+				div.innerHTML = '<img src="'+resultD.goods_title_image+'">';
+				document.getElementById('buTieXiangQin').innerHTML = resultD.goods_butiexiangqin;				
+				document.getElementById('zhongHeGongZhi').innerHTML = resultD.goods_shop_price;
+				document.getElementById('zhaoPinRenShu').innerHTML = resultD.goods_weight;
+				document.getElementById('baoMingReDu').innerHTML = resultD.goods_BaominReDu;
+				document.getElementById('gongChangDiZhi').innerHTML = resultD.goods_gongChangDiZhi;
+				document.getElementById('zhaoPinYaoQio').innerHTML = resultD.goods_yaoQiu;
+				document.getElementById('xingZhiDaiYu').innerHTML = resultD.goods_xinZhiDaiYu;
+				document.getElementById('fuLiDaiYu').innerHTML = resultD.goods_fuLiDaiYu;
+				document.getElementById('goods_body').innerHTML = resultD.goods_body;
+				mui('.mui-popover').popover('hide');
+			},
+			error:function(xhr,text_state){
+				console.log(xhr.readyState +'—'+ xhr.status +'—'+ text_state);		
+			}
+		})   //ajax-end					
+
+	
+	//我要收 AJAX
+//	  var _token = localStorage.getItem('$token');
+//	  _token = JSON.parse(_token);
+	  var woSoChang = document.getElementById('submitshouChangCardBtn');
+	  woSoChang.addEventListener('tap',function(){
+	  	var _url = 'https://app.dagong580.cn/Jsonapi/addGoodsFavorites?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+	  	var my_data = {
+			class_id:goodsInfo.class_id,       					
+			goods_id:goodsInfo.goods_id,
+	  		user_token:_token.user_token
+	  	};
+	  	console.log(_token.user_token);
+	  	mui.ajax(_url,{
+			async: false, //同步
+			crossDomain: true, //跨域开关
+			xhrFiedlds: {
+				withCredentials: true
+			},     
+	  		data:my_data,
+            dataType: 'json', 
+            type: 'POST', 
+            	processData: false,//禁用序列化
+            timeout: 10000, 
+	     	beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+	     		console.log('beforesend!' + JSON.stringify(my_data))
+	//		      		plus.nativeUI.showWaiting(); //关闭转圈  
+				plus.nativeUI.closeWaiting(); 
+	      	},                   
+            success: function(data) { 
+            	console.log('------------------------------');
+            	console.log(JSON.stringify(data));
+            console.log('上传成功'); 
+//          mui('#popover').popover('hide');
+			mui('.mui-popover').popover('hide');            
+			alert(data.msg);		
+            }, 
+            error: function(xhr, type, errorThrown) { 
+                mui('#popover').popover('hide');               
+                mui.toast('网络异常，请稍后再试！');
+            } 
+        });  //ajax end 	  	
+	
+	  }); //event end
+
+	//我要推荐 AJAX
+//	  var _token = localStorage.getItem('$token');
+//	  console.log(_token);
+	  var woTuiJian = document.getElementById('submitEditCardBtn');
+	  woTuiJian.addEventListener('tap',function(){
+	  	
+	  	
+	  	console.log('detail.html,L506,goodsInfo==='+goodsInfo)
+	  	
+	  	console.log('detail.html,L508,factories_id==='+goodsInfo.factories_id)
+	  	var nameYouF = document.getElementById('_name').value;
+	  	var telYouF = document.getElementById('_tel').value;
+	  	var _url = 'https://app.dagong580.cn/Jsonapi/recommendSubmit?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+	  	var my_data = {
+			recommend_name:nameYouF,       					
+			recommend_phone:telYouF,
+//			class_id:goodsInfo.class_id,
+			factories_id:window['factories_id'],
+			goods_item:window['goods_item'],
+//			goods_id:goodsInfo.goods_id,	
+			goods_name:goodsInfo.title,				
+	  		user_token:_token.user_token
+	  	};
+	  	console.log(_token.user_token);
+	  	mui.ajax(_url,{
+			async: false, //同步
+			crossDomain: true, //跨域开关
+			xhrFiedlds: {
+				withCredentials: true
+			},     
+	  		data:my_data,
+            dataType: 'json', 
+            type: 'POST', 
+            	processData: false,//禁用序列化
+            timeout: 10000, 
+	     	beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+	     		console.log('beforesend!' + JSON.stringify(my_data))
+	//		      		plus.nativeUI.showWaiting(); //关闭转圈  
+				plus.nativeUI.closeWaiting(); 
+	      	},                   
+            success: function(data) { 
+	            	console.log('------------------------------');
+	            	console.log(JSON.stringify(data));
+	            console.log('上传成功'); 
+				mui('.mui-popover').popover('hide');            
+				alert(data.result);		
+            }, 
+            error: function(xhr, type, errorThrown) { 
+                mui('.mui-popover').popover('hide');               
+                mui.toast('网络异常，请稍后再试！');
+            } 
+        });  //ajax end 	  		
+	  }); //event end
+
+	//我要报名 AJAX
+//	  console.log('token==='+_token);
+	  var woBaoMing = document.getElementById('submitBaoMingBtn');
+	  var _phone = localStorage.getItem('user_phone');
+	  
+	  woBaoMing.addEventListener('tap',function(){
+		console.log('detail.html;L437;window["goods_item"]'+window['goods_item']);
+	   var baominPhone = document.getElementById('_baominPhone').value;
+
+//		var goodsInfo = localStorage.getItem('$goodsInfo');
+//	  console.log('detail.html;L550;goodsInfo.goods_item=='+goodsInfo.goods_item)	  	
+	  	var _url = 'https://app.dagong580.cn/Jsonapi/baominSubmit?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+	  	var my_data = {
+//			class_id:goodsInfo.class_id,       					
+//			goods_id:goodsInfo.goods_id,
+//			goods_name:goodsInfo.title,	
+			goods_item:window['goods_item'],	
+			
+//			factories_id	:goodsInfo.factories_id,				
+	  		user_token:_token.user_token,
+//	  		user_phone:_phone,
+			baomin_phone:baominPhone
+	  	};
+	  	console.log(_token.user_token);
+	  	mui.ajax(_url,{
+			async: false, //同步
+			crossDomain: true, //跨域开关
+			xhrFiedlds: {
+				withCredentials: true
+			},     
+	  		data:my_data,
+            dataType: 'json', 
+            type: 'POST', 
+            	processData: false,//禁用序列化
+            timeout: 10000, 
+	     	beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+	     		console.log('beforesend!' + JSON.stringify(my_data))
+	//		      		plus.nativeUI.showWaiting(); //关闭转圈  
+				plus.nativeUI.closeWaiting(); 
+	      	},                   
+            success: function(data) { 
+            	console.log('------------------------------');
+            	console.log(JSON.stringify(data));
+            console.log('上传成功'); 
+//          mui('#popover').popover('hide');
+                alert(data.result);
+
+			mui('.mui-popover').popover('hide'); 
+            }, 
+            error: function(xhr, type, errorThrown) { 
+                mui('.mui-popover').popover('hide');               
+                mui.toast('网络异常，请稍后再试！');
+            } 
+        });  //ajax end 	  	
+	
+	  }); //event end	  
+	});
+	</script>
+</body>
+
+</html>

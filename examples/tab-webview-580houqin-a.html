@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>580</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css2/oil.css">
+		
+		<link rel="stylesheet" href="../css/style.css">
+
+	<style>
+		html,
+		body {
+			background-color: #efeff4;
+		}
+
+		.title {
+			padding: 20px 15px 10px;
+			color: #6d6d72;
+			font-size: 15px;
+			background-color: #fff;
+		}
+		span{ 
+			letter-spacing:0.1em
+			display:block;
+		}
+		#topPopover {
+			position: fixed;
+			top: 16px;
+			right: 6px;
+		}
+		#topPopover .mui-popover-arrow {
+			left: auto;
+			right: 6px;
+		}
+
+		.mui-btn-block {
+		    font-size: 14px;
+			display: block;
+			width: 100%;
+			margin-bottom: 10px;
+			padding: 6px 0;
+		}			
+		.wenda{
+			font-size: 13px;
+		}
+		.da{
+			display:block;
+			font-size: 11px;
+			color: #C0C0C0;			
+		}
+		.mui-table-view-chevron .mui-table-view-cell {
+		    padding:10px 35px;
+		}
+		textarea
+		{
+			width:94%;
+			height:100%;
+			text-indent:2em;
+			margin: 10px 10px 5px 10px;
+			padding: 10px; 
+			background-color: #45d7e80; 
+			font-size: 13px;
+		}
+		#calltel{
+			Z-INDEX: 20;
+		   position: fixed;
+		  	right:30px;
+			 bottom: 100px;
+			 /*width: 100%;*/
+		}
+		.login{
+			width:60px;
+			height:60px;
+			border-radius:50%;
+			background-color: #00CCCC;
+			/*border:solid #00CCCC 1px;;*/
+			line-height: 60px;
+			text-align: center;
+			color: white;
+			font-size: 15px;
+		}
+
+</style>
+</head>
+<body>
+<div id="calltel">
+	<a href="#popAddCard"><div id='' class="login"><span style="height: 26px; line-height: 55px;">提 问</span>					
+	</div></a>
+</div>
+</div>
+<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+	<div class="mui-scroll">
+	<!--<div  style="text-indent:2em;font-size: 13px;" class="title">
+		工作中有什么有趣的事，有什么难题要咨询，可以在这里留言咨询及分享。
+	</div>-->
+
+	<ul id='hqList' class="mui-table-view mui-table-view-chevron">
+		<li id="xiaohua" class="mui-table-view-cell">
+		<span class="wenda">问：厂里怎么全是站着上班啊</span>
+		<span class="da">答：站立作业是有多方面好处的，能防止长期座着，腰肌及项椎方面的病疾，也有助于减肥。</span>
+		</li>
+		<li class="mui-table-view-cell">
+		<span class="wenda">问：我想换个部门，这个部门的老大太凶了</span>
+		<span class="da">答：换部门的可能性比较小的，最好是学会与不同性格的人相处，也是磨练</span>
+		</li>
+		<li class="mui-table-view-cell">
+		<span class="wenda">问：手太慢，总被骂</span>
+		<span class="da">答：慢慢坚持下来，会快的，熟能生巧</span>
+		</li>
+		<li id="xiaohua" class="mui-table-view-cell">
+		<span class="wenda">问：厂里怎么全是站着上班啊</span>
+		<span class="da">答：站立作业是有多方面好处的，能防止长期座着，腰肌及项椎方面的病疾，也有助于减肥。</span>
+		</li>
+		<li class="mui-table-view-cell">
+		<span class="wenda">问：我想换个部门，这个部门的老大太凶了</span>
+		<span class="da">答：换部门的可能性比较小的，最好是学会与不同性格的人相处，也是磨练</span>
+		</li>
+		<li class="mui-table-view-cell">
+		<span class="wenda">问：手太慢，总被骂</span>
+		<span class="da">答：慢慢坚持下来，会快的，熟能生巧</span>
+		</li>
+		<li id="xiaohua" class="mui-table-view-cell">
+		<span class="wenda">问：厂里怎么全是站着上班啊</span>
+		<span class="da">答：站立作业是有多方面好处的，能防止长期座着，腰肌及项椎方面的病疾，也有助于减肥。</span>
+		</li>
+		<li class="mui-table-view-cell">
+		<span class="wenda">问：我想换个部门，这个部门的老大太凶了</span>
+		<span class="da">答：换部门的可能性比较小的，最好是学会与不同性格的人相处，也是磨练</span>
+		</li>
+		<li class="mui-table-view-cell">
+		<span class="wenda">问：手太慢，总被骂</span>
+		<span class="da">答：慢慢坚持下来，会快的，熟能生巧</span>
+		</li>				
+	</ul>
+</div>
+</div>		
+<!-- start of 添加加油卡弹窗 -->
+<div id="popAddCard" class="mui-popover pop_confirm pop_addCard" style="display: none;">
+	<div class="hd">提问工作相关问题</div>
+	<div class="bd">
+		<ul class="mui-table-view">
+			<!--<li class="mui-table-view-cell noClick">加油卡类型</li>-->
+			<br />
+
+
+			<li class="mui-input-row">
+				<!--<label>评语：</label>-->
+				<textarea name="a" style="float: left; width:280px;height:50px;background-color:transparent;font-size: 12px;" placeholder="在这里填写，生活问题在另一个页面..." rows="3" maxlength="200"></textarea>
+				<!--<span id="checkEditCard" class="mui-icon-yes"></span>-->
+				<!-- 文本框输入满19位才显示 -->
+			</li>			
+		</ul>
+	</div>
+	<br />
+	<div class="fd fd2 clearfix">
+		<a href="http://127.0.0.1:8020/20160605_kcnzq/pages/oil/oilCard.html#popAddCard" class="mui-btn mui-btn-block">取消</a>
+		<button id="submitAddCardBtn" class="mui-btn mui-btn-block" disabled="">提交</button>
+	</div>
+</div>
+
+				
+		<script src="../js/mui.min.js"></script>
+		<script>
+			mui.init({
+				swipeBack: true,
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			}); //init end
+
+			mui.plusReady(function() {
+				console.log('tab-webview-subpage-chat:plusready!')
+			}); //plus ready end
+
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				
+				
+				        // 创建mask遮罩
+//      plus.webview.create("","mask",{
+//          mask:"rgba(0,0,0,0.4)",
+//          background: "transparent"
+//      }).show();	
+        
+        
+				setTimeout(function() {
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for(var i = cells.length, len = i + 3; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
+						//下拉刷新，新纪录插到最前面；
+						table.insertBefore(li, table.firstChild);
+					}
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1000);
+			}; //下拉刷新 end
+			var count = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for(var i = cells.length, len = i + 20; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
+						table.appendChild(li);
+					}
+				}, 1000);
+
+			}; //上拉加载end
+			
+		
+			
+			
+		</script>
+	</body>
+
+</html>

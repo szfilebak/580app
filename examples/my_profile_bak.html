@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.css" rel="stylesheet"/>
+        	<link rel="stylesheet" href="../css2/oil.css">
+
+
+    <style type="text/css">
+body{
+	margin-top: 0;
+	font-size: 17px;
+    }
+.mui-content{
+	margin-top: 10px;
+	}
+
+a{
+    text-decoration: none;
+    color: #ffffff;
+}
+		#topPopover {
+			position: fixed;
+			top: 16px;
+			right: 6px;
+		}
+		#topPopover .mui-popover-arrow {
+			left: auto;
+			right: 6px;
+		}
+
+#page {
+    font-size: 18px;
+    position: relative;
+    z-index: 20;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+ul{
+	background-color: white; 
+	margin: 15px 0;
+	padding: 0 15px;	
+}
+li{
+	list-style-type:none; 
+	border-bottom:1px solid #efeff4;
+	background-color: white;
+	height: 50px;
+	line-height: 50px;
+}
+</style>
+
+</head>
+<body>
+		<header class="mui-bar mui-bar-nav" style="height: 44px;background-color: #32aec6;">
+		<a id="page" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left">返回</a>
+		<h1 id="title" class="mui-title">我的个人资料</h1>
+	</header>
+	
+	<div class="mui-content">
+		<ul id="my_propage">
+			<li id="user_avatar"  style="height: 80px;line-height: 80px;">
+				<label style="line-height: 50px;">头象 </label><img id="avatar" style="height: 60px;width: 60px;margin: 10px 10px 10px 0;float: right;" src="" alt="" />
+			</li>
+			<li  id='user_name'>
+				<label>姓 名</label><label style="float: right;margin-right: 10px;font-size: 14px;color: #BBBBBB;"></label>
+			</li>	
+			<li  id='user_nickname'>
+				<label>昵  称</label><label  style="float: right;margin-right: 10px;font-size: 14px;color: #BBBBBB;"></label>
+			</li>			
+			<li id='user_sex'>
+				<label>性  别</label><label   style="float: right;margin-right: 10px;font-size: 14px;color: #BBBBBB;"></label>
+			</li>
+			<li id='user_birthday'>
+				<label>生  日</label><label   style="float: right;margin-right: 10px;font-size: 14px;color: #BBBBBB;"></label>		
+			</li>
+		<!--</ul>-->
+	<!--	<ul>		-->	
+			<li id='user_phone' style="margin-top: 15px ;">
+				<label>手  机</label><label   style="float: right;margin-right: 10px;font-size: 14px;color: #BBBBBB;"></label>
+			</li>
+			<li  id='user_weixin'>
+				<label>微信号</label><label style="float: right;margin-right: 10px;font-size: 14px;color: #BBBBBB;"></label>	
+			</li>
+			<li id='user_qq'>
+				<label>QQ</label><label  style="float: right;margin-right: 10px;font-size: 14px;color: #BBBBBB;"></label>			
+			</li>
+		</ul>		
+	</div>
+	
+	
+<!-- start of 报名弹窗 -->
+<div id="popAddCard"  class="mui-popover pop_confirm pop_addCard " style="display: none;">
+	<div class="hd">修改</div>
+	<div class="bd">
+		<ul class="mui-table-view">
+			<!--<li class="mui-table-view-cell noClick">加油卡类型</li>-->
+			<br /><br />
+
+			<li id="popInput" class="mui-input-row">
+				<label>填写：</label>
+				<input id="inputEditRov" type="text" class="mui-input-clear" placeholder="请填正确的信息" maxlength="19" value="">	
+<!--<span id="checkEditCard" class="mui-icon-yes"></span>-->
+				<!-- 文本框输入满19位才显示 -->
+			</li>
+			<li class="mui-table-view-cell noClick">
+				<!-- 文本框输入满19位才显示 -->
+				<p class="name">注意：<span id="owner">检查一遍，没有填错</span></p>
+				<!-- 自动匹配加油卡持卡人姓名 -->
+			</li>
+			<br />
+		</ul>
+	</div>
+	<div class="fd fd2 clearfix">
+<!--		<a href="http://127.0.0.1:8020/20160605_kcnzq/pages/oil/oilCard.html#popAddCard" class="mui-btn mui-btn-block">取消</a>-->
+				<a href="http://127.0.0.1:8020/20160605_kcnzq/pages/oil/oilCard.html#popAddCard" class="mui-btn mui-btn-block">取消</a>
+		<button id="submitAddCardBtn" class="mui-btn mui-btn-block" >提交</button>
+	</div>
+</div>
+<!-- end of 报名弹窗 -->		
+	
+<!-- start of 修改加油卡弹窗 -->
+<div id="popEditCard" class="mui-popover pop_confirm pop_addCard">
+	<div class="hd">填写你的性别</div>
+	<div class="bd">
+		<ul class="mui-table-view">
+			<br />
+			<li class="mui-input-row" style="height:150px">
+			<div class="mui-card">
+				<form class="mui-input-group">
+					<div class="mui-input-row mui-radio">
+						<label>男</label>
+						<input name="radio1" type="radio" value="1">
+					</div>
+					<div class="mui-input-row mui-radio">
+						<label>女</label>
+						<input name="radio1" type="radio" value="2">
+					</div>
+				</form>
+			</div>
+			</li>
+		</ul>
+	</div>
+	<div class="fd fd2 clearfix">
+		<a href="http://127.0.0.1:8020/20160605_kcnzq/pages/oil/oilCard.html#popEditCard" class="mui-btn mui-btn-block">取消</a>
+		<button id="submitEditCardBtn" class="mui-btn mui-btn-block">提交</button>
+	</div>
+</div>
+<!-- end of 修改加油卡弹窗 -->		
+		
+   		<script src="../js/mui.min.js"></script>	
+</body>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){     		
+		var stateText = localStorage.getItem('userInfo') || "{}";
+		
+		stateText =  JSON.parse(stateText);
+//		document.getElementById("avatar").src=stateText.avatarUrl;
+					document.getElementById("user_avatar").innerHTML=
+				'<label style="line-height: 50px;">头象 </label><img id="avatar" style="height: 60px;width: 60px;margin: 10px 10px 10px 0;float: right;" src="'+stateText.avatarUrl+'" alt="" />';
+
+//		console.log(stateText.avatarUrl);
+//		alert(stateText.avatarUrl);
+//console.log(JSON.stringify(stateText));
+//alert(JSON.stringify(stateText));		
+		
+		
+			var sexInfo="";
+		    if(stateText.user_sex==1){
+		    	sexInfo ="男";
+		    }else if(stateText.user_sex==2){
+		    	sexInfo ="女";
+		    }
+			document.getElementById("user_name").childNodes[2].innerHTML=stateText.user_name;     		
+			document.getElementById("user_nickname").childNodes[2].innerHTML=stateText.user_nickname;
+
+			document.getElementById("user_sex").childNodes[2].innerHTML=sexInfo;
+			document.getElementById("user_birthday").childNodes[2].innerHTML=stateText.user_birthday;
+			document.getElementById("user_phone").childNodes[2].innerHTML=stateText.user_phone;     		
+			document.getElementById("user_weixin").childNodes[2].innerHTML=stateText.user_weixin;     		
+			document.getElementById("user_qq").childNodes[2].innerHTML=stateText.user_qq;     	
+			
+
+mui('#my_propage').on('tap','li',function(){
+var thisId = {};
+ thisId={id:this.id};
+
+//	var popText=document.getElementById(this.id).childNodes[1].innerHTML;
+		var pop2Text=stateText[thisId.id];
+//			console.log(pop2Text);	 
+			document.getElementById("popAddCard").childNodes[1].innerHTML=document.getElementById(this.id).childNodes[1].innerHTML;
+			
+		if(this.id=="user_nickname" || this.id=="user_weixin" )
+		{
+		document.getElementsByTagName("INPUT")[0].setAttribute("placeholder","按这儿输入");				
+		document.getElementsByTagName("INPUT")[0].setAttribute("value",pop2Text);
+		document.getElementsByTagName("INPUT")[0].setAttribute("type","text");
+		document.getElementsByTagName("INPUT")[0].removeAttribute("disabled");
+		document.getElementById("owner").innerHTML="检查一遍，没有填错";   
+//		return false;//return false后，tap事件不再冒泡到li上.
+	     };
+
+		if(this.id=="user_birthday" )
+		{
+		document.getElementsByTagName("INPUT")[0].removeAttribute("disabled");
+		document.getElementsByTagName("INPUT")[0].setAttribute("placeholder","按这儿输入生日");	
+		document.getElementsByTagName("INPUT")[0].setAttribute("value",pop2Text);
+		document.getElementsByTagName("INPUT")[0].setAttribute("type","date");
+		document.getElementById("owner").innerHTML="检查一遍，没有填错";   		
+	     };
+		if(this.id=="user_qq" )
+		{
+		document.getElementsByTagName("INPUT")[0].setAttribute("placeholder","按这儿输入");				
+		document.getElementsByTagName("INPUT")[0].setAttribute("value",pop2Text);
+		document.getElementsByTagName("INPUT")[0].setAttribute("type","number");
+		document.getElementsByTagName("INPUT")[0].removeAttribute("disabled");
+		document.getElementById("owner").innerHTML="检查一遍，没有填错";   	
+		    };
+		if(this.id=="user_phone" || this.id=="user_name" )
+		{
+		document.getElementsByTagName("INPUT")[0].setAttribute("placeholder",pop2Text);				
+		document.getElementsByTagName("INPUT")[0].setAttribute("disabled","true");
+//		document.getElementsByTagName("INPUT")[0].setAttribute("type","number");
+		document.getElementById("owner").innerHTML="手机跟姓名不能更改";     	
+	     };	 
+	     
+	     
+/*点击头像触发*/ 
+        document.getElementById('user_avatar').addEventListener('tap', function() { 
+            if (mui.os.plus) { 
+                var a = [{ 
+                    title: "拍照" 
+                }, { 
+                    title: "从手机相册选择" 
+                }]; 
+                plus.nativeUI.actionSheet({ 
+                    title: "修改用户头像", 
+                    cancel: "取消", 
+                    buttons: a 
+                }, function(b) { /*actionSheet 按钮点击事件*/ 
+                    switch (b.index) { 
+                        case 0: 
+                            break; 
+                        case 1: 
+                            getImage(); /*拍照*/ 
+                            break; 
+                        case 2: 
+                            galleryImg();/*打开相册*/ 
+                            break; 
+                        default: 
+                            break; 
+                    } 
+                }) 
+            } 
+        }, false); 
+            
+            
+  //拍照 
+        function getImage() { 
+            var c = plus.camera.getCamera(); 
+            c.captureImage(function(e) { 
+                plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+                    var s = entry.toLocalURL() + "?version=" + new Date().getTime(); 
+                    uploadHead(s); /*上传图片*/ 
+                }, function(e) { 
+                    console.log("读取拍照文件错误：" + e.message); 
+                }); 
+            }, function(s) { 
+                console.log("error" + s); 
+            }, { 
+                filename: "_doc/head.png" 
+            }) 
+        }    
+        
+ //本地相册选择 
+        function galleryImg() { 
+            plus.gallery.pick(function(a) { 
+                plus.io.resolveLocalFileSystemURL(a, function(entry) { 
+                    plus.io.resolveLocalFileSystemURL("_doc/", function(root) { 
+                        root.getFile("head.png", {}, function(file) { 
+                            //文件已存在 
+                            file.remove(function() { 
+                                console.log("file remove success"); 
+                                entry.copyTo(root, 'head.png', function(e) { 
+                                        var e = e.fullPath + "?version=" + new Date().getTime(); 
+                                        uploadHead(e); /*上传图片*/ 
+                                        //变更大图预览的src 
+                                        //目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现 
+                                    }, 
+                                    function(e) { 
+                                        console.log('copy image fail:' + e.message); 
+                                    }); 
+                            }, function() { 
+                                console.log("delete image fail:" + e.message); 
+                            }); 
+                        }, function() { 
+                            //文件不存在 
+                            entry.copyTo(root, 'head.png', function(e) { 
+                                    var path = e.fullPath + "?version=" + new Date().getTime(); 
+                                    uploadHead(path); /*上传图片*/ 
+                                }, 
+                                function(e) { 
+                                    console.log('copy image fail:' + e.message); 
+                                }); 
+                        }); 
+                    }, function(e) { 
+                        console.log("get _www folder fail"); 
+                    }) 
+                }, function(e) { 
+                    console.log("读取拍照文件错误：" + e.message); 
+                }); 
+            }, function(a) {}, { 
+                filter: "image" 
+            }) 
+        };        
+        
+        
+            
+//上传头像图片 
+
+ 		var token = localStorage.getItem('$token') || "{}";
+		token =  JSON.parse(token);
+
+        function uploadHead(imgPath) { 
+//      	var mainImage={};
+            console.log("imgPath = " + imgPath); 
+//          mainImage.src = imgPath; 
+//          mainImage.style.width = "60px"; 
+//          mainImage.style.height = "60px"; 
+            var image = new Image(); 
+            image.src = imgPath; 
+            image.onload = function() { 
+                var imgData = getBase64Image(image); 
+                /*在这里调用上传接口*/ 
+		        var myProfileInfo = {
+					user_id:	stateText.user_id,
+					user_phone:	stateText.user_phone,       					
+					user_token:token.user_token,
+					user_avatar:imgData,
+				};
+                mui.ajax('https://app.dagong580.cn/Jsonapi/saveUser?apikey=5f4cb6c57748665ec03c4afb4e4deae4', {
+      				async: false, //同步
+      				crossDomain: true, //跨域开关
+      				xhrFiedlds: {
+      					withCredentials: true
+      				},     
+                    data:myProfileInfo, 
+                    dataType: 'json', 
+                    type: 'POST', 
+                    	processData: false,//禁用序列化
+                    timeout: 10000, 
+  		     	beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+		     		console.log('beforesend!' + JSON.stringify(myProfileInfo))
+//		      		plus.nativeUI.showWaiting(); //关闭转圈  
+					plus.nativeUI.closeWaiting(); 
+		      	},                   
+                    success: function(data) { 
+                    	console.log('------------------------------');
+                    	console.log(JSON.stringify(data));
+                        console.log('上传成功'); 
+//					document.getElementById("avatar").src=data.result.avatarUrl;
+
+					document.getElementById("user_avatar").innerHTML=
+				'<label style="line-height: 50px;">头象 </label><img id="avatar" style="height: 60px;width: 60px;margin: 10px 10px 10px 0;float: right;" src="'+data.result.avatarUrl+'" alt="" />';
+
+//alert(data.result.avatarUrl);
+
+
+
+
+
+
+					
+					
+                    }, 
+                    error: function(xhr, type, errorThrown) { 
+                        mui.toast('网络异常，请稍后再试！'); 
+                    } 
+                }); 
+            } 
+    } 
+        //将图片压缩转成base64 
+        function getBase64Image(img) { 
+            var canvas = document.createElement("canvas"); 
+            var width = img.width; 
+            var height = img.height; 
+            // calculate the width and height, constraining the proportions 
+            if (width > height) { 
+                if (width > 100) { 
+                    height = Math.round(height *= 100 / width); 
+                    width = 100; 
+                } 
+            } else { 
+                if (height > 100) { 
+                    width = Math.round(width *= 100 / height); 
+                    height = 100; 
+                } 
+            } 
+            canvas.width = width;   /*设置新的图片的宽度*/ 
+            canvas.height = height; /*设置新的图片的长度*/ 
+            var ctx = canvas.getContext("2d"); 
+            ctx.drawImage(img, 0, 0, width, height); /*绘图*/ 
+            var dataURL = canvas.toDataURL("image/png", 0.8); 
+                        return dataURL; 
+
+//          return dataURL.replace("data:image/png;base64,", ""); 
+        }    
+            
+            
+   
+	     
+	     
+if("user_sex" == this.id)
+{
+	mui('#popEditCard').popover('show',document.getElementById(this.id)); // 将id为list的元素放在想要弹出的位置 
+	
+
+//修改加油卡弹窗-修改按钮
+document.getElementById('submitEditCardBtn').addEventListener('tap', function() {
+	
+	
+//		document.getElementsByTagName("INPUT")[0].setAttribute("disabled","false");
+//		document.getElementById("owner").innerHTML="检查一遍，没有填错";     	
+	
+	var chkObjs=null;
+	var obj=document.getElementsByName("radio1");
+
+	for(var i=0;i<obj.length;i++){  //遍历Radio1
+
+		if(obj[i].checked){
+		
+			chkObjs=obj[i].value;
+		}
+	};
+ 		var token = localStorage.getItem('$token') || "{}";
+		token =  JSON.parse(token);
+		      			var apikey="";
+		      			var _url = 'https://app.dagong580.cn/Jsonapi/saveUser?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+       					var myProfileInfo = {
+       					user_id:	stateText.user_id,
+       					user_phone:	stateText.user_phone,       					
+       					user_token:token.user_token,
+      					user_sex:chkObjs,
+      				};
+       			mui.ajax(_url,{
+ 		      				async: false, //同步
+		      				crossDomain: true, //跨域开关
+		      				xhrFiedlds: {
+		      					withCredentials: true
+		      				},     				
+      				
+      				dataType:'json',//数据格式类型
+      				type:'POST',//http请求类型
+ 					processData: false,//禁用序列化
+					data: myProfileInfo,     
+					headers: {
+		      					'ContentType':'application/json',
+//		      					'Content-Type':'text/html; charset=utf-8',
+//		      					'Transfer-Encoding':'chunked',
+		      					'Connection':'close',
+		      					headers:{
+//		      						'cookie': plus.storage.getItem('cookie')
+		      					},
+		      				},
+      				timeout:10000,//超时设置
+ 		     	beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+//		     		console.log('beforesend!' + JSON.stringify(myProfileInfo))
+//		      		plus.nativeUI.showWaiting(); //关闭转圈  
+					plus.nativeUI.closeWaiting(); 
+		      	},
+      				success:function(data){
+      					//处理成功返回的数据
+      				 	console.log(JSON.stringify(data)) //成功，则打一下返回的数据
+
+    		if(data.status=='success'){
+			var sexInfo="";
+		    if(chkObjs==1){
+		    	sexInfo ="男";
+		    }else if(chkObjs==2){
+		    	sexInfo ="女";
+		    }
+  
+ 			document.getElementById("user_sex").childNodes[2].innerHTML=sexInfo;
+ 
+//		state = registerInfo || {};
+//		localStorage.setItem('$state', JSON.stringify(state));
+//		var stateText = localStorage.getItem('$state') || "{}";
+//		stateText =  JSON.parse(stateText);
+      						plus.ui.toast(data.msg);
+//    						mui.back();
+mui('.mui-popover').popover('hide');
+      					}else{
+      						plus.ui.toast(data.msg);
+      					}
+      				},
+      				error:function(xhr,text_state){
+//      					ajax_w.close();
+//      					ajax_W = "";
+      					console.log(xhr.readyState +'—'+ xhr.status +'—'+ text_state);  					
+      				}
+      			})   //ajax-end
+});  //修改加油弹窗end	
+}
+else if(this.id=="user_nickname" || this.id=="user_weixin" ||this.id=="user_qq"  || this.id=="user_birthday" ||  this.id=="user_nickname" || this.id=="user_phone" || this.id=="user_name")
+{
+   mui('#popAddCard').popover('show',document.getElementById(this.id)); // 将id为list的元素放在想要弹出的位置 
+   
+      		document.getElementById("submitAddCardBtn").addEventListener('tap',function(event){  
+
+   		var token = localStorage.getItem('$token') || "{}";
+// 		alert(thisId);
+		token =  JSON.parse(token);
+//				     		console.log('thisId!' + JSON.stringify(thisId))
+
+		      			var apikey="";
+		      			var hahaha=document.getElementById('inputEditRov').value;
+		      			var _url = 'https://app.dagong580.cn/Jsonapi/saveUser?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+       					var myProfileInfo = {
+       					user_token:token,
+       					user_id:	stateText.user_id,
+       					user_phone:	stateText.user_phone,
+//    					thisId:hahaha,  //错误
+      				};
+      				myProfileInfo[thisId.id]=hahaha;
+       			mui.ajax(_url,{
+   		      				async: false, //同步
+		      				crossDomain: true, //跨域开关
+		      				xhrFiedlds: {
+		      					withCredentials: true
+		      				},     				
+      				
+      				dataType:'json',//数据格式类型
+      				type:'POST',//http请求类型
+   					processData: false,//禁用序列化
+					data: myProfileInfo,     
+
+					headers: {
+		      					'ContentType':'application/json',
+//		      					'Content-Type':'text/html; charset=utf-8',
+//		      					'Transfer-Encoding':'chunked',
+		      					'Connection':'close',
+		      					headers:{
+		      						'cookie': plus.storage.getItem('cookie')
+		      					},
+		      				},
+      				timeout:10000,//超时设置
+   		     	beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+// 		     		alert(JSON.stringify(myProfileInfo));
+		     		console.log('beforesend!' + JSON.stringify(myProfileInfo))
+//		      		plus.nativeUI.showWaiting(); //关闭转圈  
+					plus.nativeUI.closeWaiting(); 
+		      	},
+      				success:function(data){
+      					//处理成功返回的数据
+      				 	console.log(JSON.stringify(data)) //成功，则打一下返回的数据
+
+
+		        		if(data.status=='success'){
+
+			document.getElementById(thisId.id).childNodes[2].innerHTML=hahaha; 
+			delete thisId.id;
+		
+	mui('.mui-popover').popover('hide');
+
+
+
+      						plus.ui.toast(data.msg);
+//    						return false;
+//    						mui.back();
+      					}else{
+      						plus.ui.toast(data.msg);
+      					}
+      				},
+      				error:function(xhr,text_state){
+//      					ajax_w.close();
+//      					ajax_W = "";
+      					console.log(xhr.readyState +'—'+ xhr.status +'—'+ text_state);  					
+      				}
+      			})   //ajax-end
+     		}) //触发上传事件
+
+}
+	     
+
+ 
+ return false;//return false后，tap事件不再冒泡到li上.
+ 
+ 
+
+	//var herf= this.plusGetAttribute('data-herf');
+//console.log(herf);
+//	console.log(this.getAttribute('data-herf'))
+//console.log(this.getAttribute('data-herf'))
+//		$.openWindow({
+//			url: this.getAttribute('data-herf'),
+//			id: this.id,
+//			preload: true,
+//			show: {
+//				aniShow: 'pop-in'
+//			},
+//			styles: {
+//				popGesture: 'hide'
+//			},
+//			extras:{
+//				
+//			},
+//			waiting: {
+//				autoShow: false
+//			}
+//		});
+
+})       				
+       				
+       				
+       				
+       				
+      	})
+    </script>
+</html>

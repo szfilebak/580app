@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			.area {
+				margin: 20px auto 0px auto;
+			}
+			.mui-input-group:first-child {
+				margin-top: 20px;
+			}
+			.mui-input-group label {
+				width: 22%;
+			}
+			.mui-input-row label~input,
+			.mui-input-row label~select,
+			.mui-input-row label~textarea {
+				width: 78%;
+			}
+			.mui-checkbox input[type=checkbox],
+			.mui-radio input[type=radio] {
+				top: 6px;
+			}
+			.mui-content-padded {
+				margin-top: 25px;
+			}
+			.mui-btn {
+				padding: 10px;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">注 册</h1>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>手机</label>
+					<input id='user_phone' type="phone" class="mui-input-clear mui-input" placeholder="请输入手机号">
+				</div>
+				<div class="mui-input-row">
+					<label>姓名</label>
+					<input id='user_t_name' type="text" class="mui-input-clear mui-input" placeholder="请输入姓名">
+				</div>
+				<div class="mui-input-row">
+					<label>密码</label>
+					<input id='user_password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+				</div>
+				<div class="mui-input-row">
+					<label>确认</label>
+					<input id='password_confirm' type="password" class="mui-input-clear mui-input" placeholder="请确认密码">
+				</div>
+
+			</form>
+			<div class="mui-content-padded">
+				<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">注  册</button>
+			</div>
+			<div class="mui-content-padded">
+				<p>注册成功后就可以用打工580找工作换工作了。</p>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+					var mainPage = mui.preload({
+						"id": 'tabbar',
+						"url": '../examples/tabbar.html'
+//						"url": '../examples/media-list.html'
+					});
+				var toMain = function() {
+						mui.fire(mainPage, 'show', null);
+						setTimeout(function() {
+							mui.openWindow({
+								id: 'tabbar',
+								show: {
+									aniShow: 'pop-in'
+								},
+								waiting: {
+									autoShow: false
+								}
+							});
+						}, 0);
+					};					
+      		var register=document.getElementById("reg");
+      		register.addEventListener('tap',function(event){     			
+     		    	var _url = 'https://app.dagong580.cn/Jsonapi/register?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+	      		var user_phone=document.getElementById("user_phone");      		
+	      		var user_name=document.getElementById("user_name");
+	      		var user_password=document.getElementById("user_password");
+	     		var user_com_passwd=document.getElementById("password_confirm");
+      			if(user_phone.value.length==0){
+      				plus.ui.toast("你没有输入手机号");
+      				return;
+      			}
+        			if(user_t_name.value.length==0){
+        				plus.ui.toast("你没有输入姓名");
+        				return;
+        			}      			
+      			if(user_password.value.length==0){
+      				plus.ui.toast("请输入密码");
+      				return;
+      			}
+        			if(user_com_passwd.value.length==0){
+      				plus.ui.toast("请输入确认密码");
+      				return;
+      			}        		
+      					var registerinfo = {
+      					user_phone:user_phone.value,
+      					user_t_name:user_t_name.value,
+      					user_password:user_password.value,
+      					user_com_passwd:user_com_passwd.value
+      				};
+      			mui.ajax(_url,{
+      				async: false, //同步
+      				crossDomain: true, //跨域开关
+      				xhrFiedlds: {
+      					withCredentials: true
+      				},     				      				
+      				dataType:'json',//数据格式类型
+      				type:'POST',//http请求类型
+ 					processData: false,//禁用序列化
+					data: JSON.stringify(registerinfo),     
+					headers: {
+      					'ContentType':'application/json',
+//		      					'Content-Type':'text/html; charset=utf-8',
+//		      					'Transfer-Encoding':'chunked',
+      					'Connection':'close',
+      					headers:{
+      						'cookie': plus.storage.getItem('cookie')
+      					},
+  					},
+      				timeout:10000,//超时设置
+ 			     	beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+			     		console.log('beforesend!' + JSON.stringify(registerinfo))
+	//		      		plus.nativeUI.showWaiting(); //关闭转圈  
+						plus.nativeUI.closeWaiting(); 
+		     	 	},
+      				success:function(data){
+      					//处理成功返回的数据
+      					console.log(data);
+      				 	console.log(JSON.stringify(data)) //成功，则打一下返回的数据
+
+      					//{'result':1,'data':"注册成功"}
+//		        					  alert(data.msg);
+			        		if(data.status=='success'){
+		//						toMain();
+		//
+		// var registerInfo = {
+		//				user_token:data.result.user_token		
+		//				}
+		//		state = registerInfo || {};
+		//		localStorage.setItem('$state', JSON.stringify(state));
+		//		var stateText = localStorage.getItem('$state') || "{}";
+		//		stateText =  JSON.parse(stateText);
+			        			mui.openWindow({
+			        				url:'login.html',
+			        				id:'login'
+			        			});      			
+							mui.back();
+//							localStorage.clear();
+							plus.ui.toast(data.msg);
+							plus.nativeUI.closeWaiting(); 
+      					}else{
+      						plus.ui.toast(data.msg);
+      					}
+  					},
+      				error:function(xhr,text_state){
+//      					ajax_w.close();
+//      					ajax_W = "";
+      					console.log(xhr.readyState +'—'+ xhr.status +'—'+ text_state);      					
+      				}
+      			})
+      		})
+      	})
+    </script>
+		<!--<script>
+			(function($, doc) {
+				$.init();
+				$.plusReady(function() {
+					var settings = app.getSettings();
+					var regButton = doc.getElementById('reg');
+					var accountBox = doc.getElementById('account');
+					var passwordBox = doc.getElementById('password');
+					var passwordConfirmBox = doc.getElementById('password_confirm');
+					var emailBox = doc.getElementById('email');
+					regButton.addEventListener('tap', function(event) {
+						var regInfo = {
+							account: accountBox.value,
+							password: passwordBox.value,
+							email: emailBox.value
+						};
+						var passwordConfirm = passwordConfirmBox.value;
+						if (passwordConfirm != regInfo.password) {
+							plus.nativeUI.toast('密码两次输入不一致');
+							return;
+						}
+						app.reg(regInfo, function(err) {
+							if (err) {
+								plus.nativeUI.toast(err);
+								return;
+							}
+							plus.nativeUI.toast('注册成功');
+							$.openWindow({
+								url: 'login.html',
+								id: 'login',
+								show: {
+									aniShow: 'pop-in'
+								}
+							});
+						});
+					});
+				});
+			}(mui, document));
+		</script>-->
+	</body>
+
+</html>

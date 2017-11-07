@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>580</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css2/oil.css">
+				<link rel="stylesheet" href="../css/style.css">
+		<style>
+			html,body {
+				background-color: #efeff4;
+				line-height: 19px;
+			}
+		#calltel{
+			Z-INDEX: 20;
+		   position: fixed;
+		  right:20%;
+		 bottom: 30%;
+		}			
+					.title{
+						margin: 20px 15px 10px;
+						/*color: #6d6d72;*/
+						color: #00CCCC ;
+						font-size: 15px;
+					}
+		.tour {
+		    /*position: relative;
+		    border: 1px solid #eee;
+		    margin: 0 0 10px 0;
+		    background-color: #fff;
+		    overflow: hidden;*/
+		   height: 114px;
+		   padding: 10px;
+		    
+		}			
+		.tour figcaption {
+		    width: 75%;
+		    float: left;
+		}
+		.tour img {
+		    width: 25%;
+		    float: left;
+		}
+		span{
+			font-size: 15px;
+			margin: 0px 0px 5px 10px;
+		}
+		.mui-card {
+		    overflow: hidden;
+		    margin: 0 15px;
+		    border: 0;
+		    /*border-radius: 6px;*/
+		 background-color: transparent;
+		     /*background-clip: padding-box;*/
+		}
+		.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before {
+		    font-family: Muiicons;
+		    font-size: 18px;
+		    font-weight: 400;
+		    line-height: 1;
+		    text-decoration: none;
+		    color: #aaa;
+		    border-radius: 0;
+		    background: 0 0;
+		    -webkit-font-smoothing: antialiased;
+		}
+		
+		
+		.pop_addCard .bd li.mui-input-row label ~ input {
+		    width: 17%;
+		    font-size: 14px;
+		}
+		.mui-checkbox input[type="checkbox"], .mui-radio input[type="radio"] {
+		    position: absolute;
+		    top: 0;
+		    right: 0px;
+		    display: inline-block;
+		    width: 28px;
+		    height: 26px;
+		    border: 0;
+		    outline: 0 !important;
+		    background-color: transparent;
+		    -webkit-appearance: none;
+		}
+		
+		.mui-input-group {
+		margin-top: -5px ;
+		    background-color: transparent;
+		}
+		.mui-radio input[type='radio']:checked:before {
+		content: '\e442';
+		    top: 5px;
+		
+		}
+		
+		
+		
+		.pinneitijiao{
+			background-color:#00CCCC;  
+			margin: 10px; 
+			height: 20px;
+			width: 90%;
+			line-height:20px;   
+		  overflow:hidden;   	
+		  text-align:center; 
+		  color: #ffffff;
+		  font-size: 12px;
+		    border-radius:5px;
+		}
+		.mui-icon{
+			font-size: 13px;
+		}
+		label{
+			font-size: 12px;
+		}
+		
+		.xinming{
+			margin: 0 5px 0px 10px;
+			font-size: 12px;
+		}
+		.bianHao{
+			margin-right: 20px; 
+			font-size: 10px;
+		}
+		.ziWei{
+			margin: 0px 5px 0px 10px;
+			font-size: 12px;
+		}
+		.xinJi{
+			margin: 3px 5px 0px 10px;
+			font-size: 12px;
+		}
+		</style>
+	</head>
+	<body>
+
+		<!--		<h2 style="margin: 0 0 20px 0">招聘企业</h2>-->
+		<div style="margin: 10px; text-indent:2em;font-size: 12px;" >
+			快给你们的驻厂管理人员打分评价啊，他们不会晓得谁投了什么票噢，每日仅可以评价一次。
+		</div>
+		<ul id='aaa'>
+		
+		</ul>
+
+		<!--<div class="more">加载更多...</div>-->
+		
+		<!-- start of 修改加油卡弹窗 -->
+		<div id="popEditCard" class="mui-popover pop_confirm pop_addCard">
+			<div id="hd" class="hd">评价xxx</div>
+			<div class="bd">
+				<ul class="mui-table-view">
+					<br />
+					<li class="mui-input-row">
+					<div class="mui-card">
+						<form class="mui-input-group">
+							<div class="mui-input-row mui-radio">
+								<label>满意</label>
+								<input name="radio2" type="radio">
+							</div>
+							<div class="mui-input-row mui-radio">
+								<label>一般</label>
+								<input name="radio2" type="radio" >
+							</div>
+							<div class="mui-input-row mui-radio" >
+								<label>不满</label>
+								<input name="radio2" type="radio" >
+							</div>
+						</form>
+					</div>
+		
+					</li>
+		
+					<li class="mui-input-row">
+						<label>评语：</label>
+						<textarea id="textPingjia" style="float: left; width:200px;height:50px;background-color:transparent;font-size: 12px;" placeholder="这里写留言，不向被评者提供谁写的" rows="3" maxlength="200"></textarea>
+						<!--<span id="checkEditCard" class="mui-icon-yes"></span>-->
+						<!-- 文本框输入满19位才显示 -->
+					</li>
+		
+				</ul>
+			</div>
+			<div class="fd fd2 clearfix">
+				<a href="http://127.0.0.1:8020/20160605_kcnzq/pages/oil/oilCard.html#popEditCard" class="mui-btn mui-btn-block">取消</a>
+				<button id="submitPingjiaBtn" class="mui-btn mui-btn-block">提交</button>
+			</div>
+		</div>
+		<!-- end of 修改加油卡弹窗 -->		
+
+			
+	</body>
+	<script src="../js/mui.min.js"></script>
+		<script>
+//			    var comments=null;
+		mui.init({
+			swipeBack:true, //启用右滑关闭功能								
+		});
+		mui.plusReady(function(){
+			
+		//添加newId自定义事件监听
+			window.addEventListener('factoriesId',function(event){
+			  //获得事件参数
+	//		  var d = 'tab-webview-580houqin-c.html';
+		     	 var factories_id = event.detail.factoriesId;
+		     	 window['factories_id'] = factories_id;
+		     	 
+		     	 console.log('factories_id=========='+factories_id);
+			  //根据id向服务器请求新闻详情
+
+
+			  	var _token = localStorage.getItem('$token');
+			  	console.log(_token);
+			 		 _token = JSON.parse(_token);
+			 		 console.log(_token);
+//				var div=document.getElementById("sliderPic");	
+
+//				document.getElementById('title').innerHTML = goodsInfo.title;
+//				document.getElementById('titlePicText').innerHTML = goodsInfo.title;
+				var zhuchangInfo = {
+					factories_id:factories_id,       					
+			  		user_token:_token.user_token				
+				};
+				var _url = 'https://app.dagong580.cn/Jsonapi/zhuchangInfo?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+				mui.ajax(_url,{
+					async: false, //同步
+					crossDomain: true, //跨域开关
+						xhrFiedlds: {
+							withCredentials: true
+						},     					
+					dataType:'json',//数据格式类型
+					type:'POST',//http请求类型
+					processData: false,//禁用序列化
+					data: zhuchangInfo,
+					headers: {
+						'ContentType':'application/json',
+						'Connection':'close',
+					},
+					timeout:10000,//超时设置
+					beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+						console.log('data = '+JSON.stringify(zhuchangInfo))
+						plus.nativeUI.closeWaiting(); 
+					},
+					success:function(data){
+						
+//						console.log(data.result.Url);
+						console.log(JSON.stringify(data));
+						var resultD = data.result;
+							//处理成功返回的数据
+						console.log(JSON.stringify(resultD)) //成功，则打一下返回的数据	
+						result=resultD.zhuchang;
+						console.log(result);
+						var Url=result.Url;
+						console.log('Url'+data.result.Url);
+						var list=document.getElementById('aaa');
+						var finallist='';
+						for(i=result.length-1;i>=0;i--){
+						finallist=finallist+'<li  data-id='+i+'><a href="#popEditCard" style="color: #000000;"><span id="pop"></span><figure class="tour"><img src="'+data.result.Url+result[i].zhuchang_avatar+'"><figcaption><article><header><div class="xinming">姓名：<font style="font-size: 14px;">'+result[i].zhuchang_name+'</font> <span class="bianHao">No.'+result[i].job_number+'</span></div><div class="ziWei">职位：'+result[i].place+'</div><div class="xinJi">星级：<span style="margin-left: 25px; color: #f60;"  class="mui-icon mui-icon-star"></span><span style="color: #f60;" class="mui-icon mui-icon-star"></span><span style="color: #f60;" class="mui-icon mui-icon-star"></span><span class="mui-icon mui-icon-star"></span><span class="mui-icon mui-icon-star"></span></div><div style="height: 30px ;"><div class="pinneitijiao">我要评价</div></div></header></article></figcaption></figure></a></li>'};
+
+						list.innerHTML=finallist;
+						
+
+						
+						mui('.mui-popover').popover('hide');
+					},
+					error:function(xhr,text_state){
+						console.log(xhr.readyState +'—'+ xhr.status +'—'+ text_state);		
+					}
+				})   //ajax-end	
+			});
+		});
+		
+
+		var stateText = localStorage.getItem('userInfo') || "{}";
+		console.log('stateText===='+stateText);
+		var token = localStorage.getItem('$token') || "{}";
+		token =  JSON.parse(token);		
+		stateText =  JSON.parse(stateText);		
+		
+		mui("#aaa").on('tap','li',function(){
+			console.log('5555555555'); 	
+			 var name=window['result'][this.getAttribute('data-id')].zhuchang_name;
+			 job_number=window['result'][this.getAttribute('data-id')].job_number;
+
+			document.getElementById('hd').innerHTML='评价 '+name;
+		});	
+
+		//修改评价弹窗-评价按钮
+		document.getElementById('submitPingjiaBtn').addEventListener('tap', function() {
+			console.log('这是弹窗按钮事件')
+			
+				var textPingjia = document.getElementById('textPingjia').value;
+				console.log('textPingjia===='+textPingjia);
+				var chkObjs=null;
+				var obj=document.getElementsByName("radio2");
+				console.log(obj);	
+				for(var i=0;i<obj.length;i++){  //遍历radio2
+			
+					if(obj[i].checked){	
+						console.log('[i]==='+i);
+						console.log('obj[i]==='+obj[i]);
+//						console.log('obj[i].value====='+obj[i].value);
+	 					var chkObjs=i;
+					}
+				};
+//			 var job_number=window['result'][this.getAttribute('data-id')].job_number;
+			
+//			 var job_number =result[this.getAttribute('data-id')].job_number;
+			 console.log('job_number ====='+job_number);
+////			 window['zhuchang_id']=window['result'][this.getAttribute('data-id')].zhuchang_id;
+//			 window['pingjia']=chkObjs;
+//			console.log('chkObjs====='+chkObjs);
+//			console.log('content====='+textPingjia);
+			
+		
+			var _url = 'https://app.dagong580.cn/Jsonapi/pingjiaZhuchang?apikey=5f4cb6c57748665ec03c4afb4e4deae4';
+			var myProfileInfo = {
+				job_number:job_number,
+//				zhuchang_id:window['zhuchang_id'],	
+				content:textPingjia,
+				factories_id:window['factories_id'],								
+				user_id:	stateText.user_id,															
+				pingjia:chkObjs+1,	//1，满意，2，一般，3，不满							
+				user_token:token.user_token,
+			};
+   			mui.ajax(_url,{
+	      				async: false, //同步
+	      				crossDomain: true, //跨域开关
+	      				xhrFiedlds: {
+	      					withCredentials: true
+	      				},     				
+  				
+  				dataType:'json',//数据格式类型
+  				type:'POST',//http请求类型
+				processData: false,//禁用序列化
+				data: myProfileInfo,
+				headers: {
+	      					'ContentType':'application/json',
+	      					'Connection':'close',
+	      				},
+  				timeout:10000,//超时设置
+	      		beforeSend:function() { // 发送之前，可以打一下看看提交的参数（如果是变量）
+	     		console.log('beforesend!' + JSON.stringify(myProfileInfo))
+
+//								document.getElementById('submitEditCardBtn').setAttribute("disabled","disabled");
+//							　　objButton.val('提交中').attr('disabled',true);//改变提交按钮上的文字并将按钮设置为不可点击 	
+				plus.nativeUI.closeWaiting(); 
+	      	},
+  				success:function(data){
+  					//处理成功返回的数据
+  				 	console.log(JSON.stringify(data)) //成功，则打一下返回的数据
+
+			    		if(data.status=='success'){
+
+						mui('.mui-popover').popover('hide');
+  						alert(data.result);
+
+//			      			return false;//return false后，tap事件不再冒泡到li上.
+						//mui.back();
+  					}else{
+  						console.log('每个管理员==='+data.result);
+						mui('.mui-popover').popover('hide');
+  						alert(data.result);
+  					}
+  				},
+  				error:function(xhr,text_state){
+
+  					console.log(xhr.readyState +'—'+ xhr.status +'—'+ text_state);  					
+  				}
+  			})   //ajax-end
+  			return false;//return false后，tap事件不再冒泡到li上.
+//			});  //弹窗end	
+		},false); 	
+			
+		
+
+	</script>
+</html>

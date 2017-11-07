@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="../css/style.css">
+    
+
+    <style type="text/css">
+		html,body {
+			background-color: #efeff4;
+		}
+		.title{
+			margin: 20px 14px 10px;
+			/*color: #6d6d72;*/
+			color: #00CCCC ;
+			font-size: 13px;
+		}
+		.mui-search .mui-placeholder {
+		    font-size: 12px;
+		    line-height: 40px;
+		    text-align: center;
+		    color: #999;
+		}
+		input[type="search"] {
+		    line-height: 21px;
+		    width: 100%;
+		    height: 30px;
+		    margin-bottom: 5px;
+		        margin-top: 5px;
+		
+		    padding: 10px 15px;
+		background-color: #FFFFFF;
+		}
+		.mui-table-view::after {
+		    height: 0px;
+		}
+		.niebiao{
+				 /*background-image:url('../images/jiang.png') ;*/
+			 background-position: bottom right;
+			 background-repeat: no-repeat;
+			 background-size: cover;
+			 	 background-size:30% 30%;
+			 	 /*background-origin: border; 
+		  background-position: -10px -10px;*/
+		    background-color: rgb(255, 255, 255);
+		    margin: 5px;
+		    height: 115px;
+		}
+		.niebiaotille{
+			line-height: 10px;
+			padding: 10px;
+			font-size: 16px;	
+		    border-bottom: 1px solid gainsboro;
+			    
+		}
+		.niebiaopic{
+			float: left; 
+			width: 35%;
+			padding: 10px;
+		}
+		.niebiaoitem{
+			float: left;
+			 width: 60%;
+			 padding: 3px 0 0 0;
+			 margin-top: 5px;
+			 font-size: 12px;
+			 height:17px;
+			 line-height: 17px;
+		
+		}
+		.jiang{
+			background-color: yellow;
+			color: red;
+			 height: 12px;
+			line-height: 12px; 
+			width: 60%;  
+			font-size:8px;
+			margin: 5px 0 0 0;
+			padding: 0 3px 0 4px;
+		    border-radius:3px;           
+		}
+		.wamp{
+			border: 1px dashed #ccc;   
+			-webkit-animation: twinkling 1s infinite ease-in-out; 
+			  }
+		.animated{ 
+		-webkit-animation-duration: 1s; 
+		animation-duration: 1s; 
+		-webkit-animation-fill-mode: both; 
+		animation-fill-mode: both 
+		} 
+		@-webkit-keyframes twinkling{ 
+		0%{ 
+		opacity: 0.3; 
+		} 
+		100%{ 
+		opacity: 2; 
+		} 
+		} 
+		
+		@-o-keyframes twinkling{ 
+		0%{ 
+		opacity: 0.3; 
+		} 
+		100%{ 
+		opacity: 2; 
+		} 
+		}
+		
+		@-moz-keyframes twinkling{ 
+		0%{ 
+		opacity: 0.3; 
+		} 
+		100%{ 
+		opacity: 2; 
+		} 
+		}
+		
+		@keyframes twinkling{ 
+		0%{ 
+		opacity: 0.3;  /*渐变的透明度*/
+		} 
+		100%{ 
+		opacity: 2; /*闪烁的速度*/
+		} 
+		}
+		
+		
+		/*外框动画*/
+		.bb, .bb::before, .bb::after {
+		  position: absolute;
+		  top: 0;
+		  bottom: 0;
+		  left: 0;
+		  right: 0;
+		}
+		 
+		.bb {
+		  width: 62%;
+		  height: 14px;
+		  margin: auto;
+		  background: url("img/Button-White-Large.png") no-repeat 50%/70% rgba(0, 0, 0, 0.1);
+		  color: #69ca62;
+		  box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5);
+		}
+		.bb::before, .bb::after {
+		  content: '';
+		  z-index: -1;
+		  margin: -5%;
+		  box-shadow: inset 0 0 0 2px;
+		  animation: clipMe 8s linear infinite;
+		}
+		.bb::before {
+		  animation-delay: -4s;
+		}
+		.bb:hover::after, .bb:hover::before {
+		  background-color: rgba(255, 0, 0, 0.3);
+		}
+		 
+		@keyframes clipMe {
+		  0%, 100% {
+		    clip: rect(0px, 20.0px, 2px, 0px);
+		  }
+		  25% {
+		    clip: rect(0px, 2px, 20.0px, 0px);
+		  }
+		  50% {
+		    clip: rect(18.0px, 20.0px, 20.0px, 0px);
+		  }
+		  75% {
+		    clip: rect(0px, 20.0px, 20.0px, 18.0px);
+		  }
+		}         	
+    	
+</style>
+
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav" style="height: 44px;background-color: #32aec6;">
+		<a id="page" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left">返回</a>
+		<h1 id="title" class="mui-title">我的收藏</h1>
+	</header>
+	
+
+		<!--下拉刷新容器-->
+	<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+		<div class="mui-scroll">
+			<!--数据列表-->
+				
+			<ul id="hqList" class="mui-table-view " style="background-color: #efeff4;">			
+			</ul>
+
+		</div>	
+	</div>	
+	<script src="../js/mui.min.js"></script>
+	
+</body>
+    <script type="text/javascript" charset="utf-8">
+		mui.init({
+			pullRefresh: {
+				container: '#refreshContainer',
+				down: {
+					callback: pulldownRefresh
+				},
+	//					up: {
+	//				    auto: false,
+	//                  contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
+	//                   contentnomore:'没有更多数据了',
+	//                   callback: pullupRefresh
+	//					}
+			}
+		});
+      	mui.plusReady(function(){
+
+  	});
+      		var token = localStorage.getItem('$token');
+      		token =JSON.parse(token);
+      		console.log("token:"+token);
+			var _url = 'https://app.dagong580.cn/Jsonapi/favoritesGoods?apikey=5f4cb6c57748665ec03c4afb4e4deae4&user_token='+token.user_token+'&class_id=1';
+			console.log(_url);
+      		mui.ajax(_url,{
+      			dataType:'json',
+      			async:'false',
+      			type:'get',
+      			timeout:10000,
+      			success:function(data){
+		  		    	console.log("我的收藏，My_Collection.html(p264)==="+JSON.stringify(data));			
+//		      		var index = null; //主页面
+//					var slider = mui("#slider");
+//					slider.slider({
+//						interval: 6000
+//					});
+					
+			var goodsList=data.result;
+
+			var list=document.getElementById("hqList");
+			var finallist='';
+
+  			for(i=goodsList.length-1;i>=0;i--){      								    				
+finallist=finallist+'<li data-id="'+i+'"><div class="niebiao"><div class="niebiaotille"><span>'+goodsList[i].goods_name+'</span></div><div><div class="niebiaopic"><img src="'+goodsList[i].goods_thumbnail_image+'" style="height: 64px;"></div><div   class="niebiaoitem"><div>综合工资：<span style="color: red;">' +goodsList[i].goods_shop_price+ '</span><span>元</span></div><div>年龄要求：<span>'+goodsList[i].goods_ageLimit+'</span></div><div>报名人数：<span>'+goodsList[i].goods_BaominReDu+'</span><span>人</span></div><div class="jiang">入职有奖:中国打工580网已认证</div></div></div></div></li>';
+			}
+			list.innerHTML=finallist;
+			mui('#hqList').on('tap','li',function(){
+	  			console.log(this.getAttribute('data-id'));		
+	   			console.log(goodsList[this.getAttribute('data-id')].goods_name);		
+	
+				var goodsInfo = {
+				title:goodsList[this.getAttribute('data-id')].goods_name,
+				pubtime:goodsList[this.getAttribute('data-id')].goods_shop_price,
+				content:goodsList[this.getAttribute('data-id')].goods_body,
+				goods_id:goodsList[this.getAttribute('data-id')].goods_id,
+				class_id:goodsList[this.getAttribute('data-id')].class_id      						
+				}
+	
+				localStorage.setItem('$goodsInfo', JSON.stringify(goodsInfo));
+	
+	  				var self =	mui.openWindow({
+	  						url:'detail.html',
+	  						id:'detail',
+	  						extras:{
+								test:'88888',
+	  						}
+	  				})
+    			})
+  			}, 
+			error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
+				console.log('pppp');
+				console.log('AJAX:ERR-|T:'+type+'|错误文本:'+xhr.responseText);
+				if(type == 'timeout') {
+					mui.toast("请求超时：请检查网络")
+				} else {
+					mui.toast('请求失败：' + type + '\n err:' + errorThrown);
+				}
+			},   	
+	  	})	      	
+	/**
+	 * 下拉刷新具体业务实现
+	 */
+	function pulldownRefresh(){
+		setTimeout(function(){					
+			var table = document.body.querySelector('#zpList');
+//					var cells = document.body.querySelectorAll('.mui-table-view-cell');					
+      		mui.ajax('https://app.dagong580.cn/Jsonapi/goodsList?apikey=5f4cb6c57748665ec03c4afb4e4deae4&class_id=1',{
+      			dataType:'json',
+      			type:'get',
+      			timeout:10000,
+      			success:function(data){
+      				var goodsList=data.result;
+      				var list=document.getElementById("zpList");
+      				var finallist='';
+	      			for(i=goodsList.length-1;i>=0;i--){
+      				finallist=finallist+'<li data-id="'+i+'"><div class="niebiao"><div class="niebiaotille"><span>'+goodsList[i].goods_name+'</span></div><div><div class="niebiaopic"><img src="'+goodsList[i].goods_thumbnail_image+'" style="height: 64px;"></div><div   class="niebiaoitem"><div>综合工资：<span style="color: red;">'+goodsList[i].goods_shop_price+'</span><span>元</span></div><div>年龄要求：<span>'+goodsList[i].goods_price+'周岁</span></div><div>报名人数：<span>'+goodsList[i].goods_shop_price+'</span><span>人</span></div><div class="jiang">入职有奖:中国打工580网已认证</div></div></div></div></li>';}
+ 
+      				list.innerHTML=finallist;
+ 						//下拉刷新，新纪录插到最前面；
+//						table.insertBefore(li, table.firstChild);     				
+      				mui('#zpList').on('tap','li',function(){
+      					mui.openWindow({
+      						url:'detail.html',
+      						id:'detail',
+      						extras:{
+//    							title:goodsList[this.getAttribute('data-id')].goods_name,
+//    							pubtime:goodsList[this.getAttribute('data-id')].goods_shop_price,
+//    							content:goodsList[this.getAttribute('data-id')].goods_body,
+//							txt: this.innerText
+      						}
+      					})
+      				})
+      			}, 
+				error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
+					console.log('AJAX:ERR-|T:'+type+'|错误文本:'+xhr.responseText);
+					if(type == 'timeout') {
+							mui.toast("请求超时：请检查网络")
+					} else {
+					mui.toast('请求失败：' + type + '\n err:' + errorThrown);
+					}
+				},      			 				
+     	 	})					
+			mui('#refreshContainer').pullRefresh().endPulldownToRefresh(); //refresh completed
+		}, 1500);
+	}
+	var count = 0; 
+    </script>
+</html>

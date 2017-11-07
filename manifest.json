@@ -1,0 +1,986 @@
+{
+	"@platforms": [
+		"android",
+		"iPhone",
+		"iPad"
+	],
+	"id": "H558D7E31-yy",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "中国打工580网",/*应用名称，程序桌面图标名称*/
+	"version": {
+		"name": "9800.0.0",/*应用版本名称*/
+		"code": "10"
+	},
+	"description": "",/*应用描述信息*/
+	"icons": {
+		"72": "icon.png"
+	},
+	"launch_path": "html/login.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+	"developer": {
+		"name": "逗比大哥",/*开发者名称*/
+		"email": "244680498@qq.com",/*开发者邮箱地址*/
+		"url": "http://www.taohaomi.com"
+	},
+	"permissions": {
+
+
+		"Cache": {
+			"description": "管理应用缓存"
+		},
+
+		"Console": {
+			"description": "跟踪调试输出日志"
+		},
+
+
+
+		"Events": {
+			"description": "应用扩展事件"
+		},
+
+
+
+
+
+
+
+
+		"UI": {},
+
+
+
+
+
+
+
+
+
+
+		"Webview": {},
+		"NativeUI": {},
+		"Navigator": {},
+		"Runtime": {},
+		"Zip": {},
+		"Maps": {},
+		"File": {},
+		"Audio": {},
+		"Speech": {},
+		"Camera": {},
+		"Device": {},
+		"Barcode": {},
+		"Storage": {},
+		"Gallery": {},
+		"Uploader": {},
+		"Contacts": {},
+		"Proximity": {},
+		"Messaging": {},
+		"NativeObj": {},
+		"Downloader": {},
+		"Invocation": {},
+		"Orientation": {},
+		"Geolocation": {},
+		"Accelerometer": {},
+		"XMLHttpRequest": {}
+	},
+	"plus": {
+		"splashscreen": {
+			"autoclose": false,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+			"waiting": true
+		},
+		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
+		"distribute": {
+			"apple": {
+				"appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+				"mobileprovision": "",/*iOS应用打包配置文件*/
+				"password": "",/*iOS应用打包个人证书导入密码*/
+				"p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+				"devices": "universal",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+				"frameworks": []
+			},
+			"google": {
+				"packagename": "",/*Android应用包名，如io.dcloud.HelloH5*/
+				"keystore": "",/*Android应用打包使用的密钥库文件*/
+				"password": "",/*Android应用打包使用密钥库中证书的密码*/
+				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
+				"permissions": [
+					"<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+					"<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+					"<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+					"<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+					"<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>",
+					"<uses-permission android:name=\"android.permission.CAMERA\"/>",
+					"<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+					"<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+					"<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+					"<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>",
+					"<uses-permission android:name=\"android.permission.SEND_SMS\"/>",
+					"<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+					"<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+					"<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+					"<uses-feature android:name=\"android.hardware.camera\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_SMS\"/>",
+					"<uses-permission android:name=\"android.permission.READ_SMS\"/>"
+				]
+			},
+			"orientation": [
+				"portrait-primary",
+				"portrait-secondary"
+			],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+			"icons": {
+				"ios": {
+					"prerendered": true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+					"auto": "", /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+					"iphone": {
+						"normal": "unpackage/res/icons/57x57.png",/*iPhone普通屏幕程序图标，分辨率：57x57*/
+						"retina": "unpackage/res/icons/114x114.png",/*iPhone高分屏程序图标，分辨率：114x114*/
+						"retina7": "unpackage/res/icons/120x120.png",/*iPhone iOS7高分屏程序图标，分辨率：120x120*/
+						"spotlight-normal": "unpackage/res/icons/29x29.png", /*iPhone Spotlight搜索程序图标，分辨率：29x29*/
+						"spotlight-retina": "unpackage/res/icons/58x58.png", /*iPhone高分屏Spotlight搜索程序图标，分辨率：58x58*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",/*iPhone iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "unpackage/res/icons/29x29.png", /*iPhone设置页面程序图标，分辨率：29x29*/
+						"settings-retina": "unpackage/res/icons/58x58.png",
+						"retina8": "unpackage/res/icons/180x180.png",
+						"settings-retina8": "unpackage/res/icons/87x87.png"
+					},
+					"ipad": {
+						"normal": "unpackage/res/icons/72x72.png", /*iPad普通屏幕程序图标，分辨率：72x72*/
+						"retina": "unpackage/res/icons/144x144.png", /*iPad高分屏程序图标，分辨率：144x144*/
+						"normal7": "unpackage/res/icons/76x76.png", /*iPad iOS7程序图标，分辨率：76x76*/
+						"retina7": "unpackage/res/icons/152x152.png", /*iPad iOS7高分屏程序图标，分辨率：152x152*/
+						"spotlight-normal": "unpackage/res/icons/50x50.png", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+						"spotlight-retina": "unpackage/res/icons/100x100.png", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+						"spotlight-normal7": "unpackage/res/icons/40x40.png",/*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",/*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "unpackage/res/icons/29x29.png",/*iPad设置页面程序图标，分辨率：29x29*/
+						"settings-retina": "unpackage/res/icons/58x58.png"
+					}
+				},
+				"android": {
+					"mdpi": "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
+					"ldpi": "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
+					"hdpi": "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
+					"xhdpi": "unpackage/res/icons/96x96.png",/*720P高分屏程序图标，分辨率：96x96*/
+					"xxhdpi": "unpackage/res/icons/144x144.png"
+				}
+			},
+			"splashscreen": {
+				"ios": {
+					"iphone": {
+						"default": "F:/580/320-480.png", /*iPhone3启动图片选，分辨率：320x480*/
+						"retina35": "F:/580/640-960.png",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+						"retina40": "img/640-1136.png",
+						"retina47": "img/750-1334.png",
+						"retina55": "img/1242-2208.png",
+						"retina55l": "img/2208-1242.png"
+					},
+					"ipad": {
+						"portrait": "img/768-1004.png", /*iPad竖屏启动图片，分辨率：768x1004*/
+						"portrait-retina": "img/1536-2008.png",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
+						"landscape": "img/1024-748.png", /*iPad横屏启动图片，分辨率：1024x748*/
+						"landscape-retina": "img/2048－1496.png", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+						"portrait7": "F:/580/768-1024.png", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+						"portrait-retina7": "img/1536－2048.png",/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+						"landscape7": "img/1024-768.png", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+						"landscape-retina7": "img/20481536.png"
+					}
+				},
+				"android": {
+					"hdpi": "img/480-762.png",
+					"xhdpi": "images/720-1242.png",
+					"xxhdpi": "images/1080-1882.png"
+				}
+			}
+		}
+	},
+	"dependencies": {
+		"pages": {
+			"setting.html": {
+				"href": "setting.html",
+				"resources": [
+					"js/mui.min.js",
+					"js/mui.view.js",
+					"libs/easymob-webim-sdk/jquery-1.11.1.js",
+					"libs/easymob-webim-sdk/strophe-custom-2.0.0.js",
+					"libs/easymob-webim-sdk/json2.js",
+					"libs/easymob-webim-sdk/easemob.im-1.0.5.js",
+					"js/feedback.js",
+					"js/feedback-page.js",
+					"js/mui.locker.js",
+					"js/app.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/feedback-page.css",
+					"images/iconfont-tianjia.png"
+				],
+				"refer": [
+					"login.html"
+				],
+				"priority": 1
+			},
+			"main.html": {
+				"href": "main.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"js/app.js"
+				],
+				"refer": [
+					"setting.html"
+				],
+				"priority": 1
+			},
+			"unlock.html": {
+				"href": "unlock.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"js/mui.locker.js",
+					"js/app.js"
+				],
+				"refer": [
+					"login.html",
+					"main.html"
+				],
+				"priority": 0
+			},
+			"forget_password.html": {
+				"href": "forget_password.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"js/mui.min.js",
+					"js/app.js"
+				],
+				"priority": 1
+			},
+			"reg.html": {
+				"href": "reg.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"js/mui.min.js",
+					"js/app.js"
+				],
+				"refer": [
+					"login.html"
+				],
+				"priority": 3
+			},
+			"login.html": {
+				"href": "login.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"js/mui.min.js",
+					"js/mui.enterfocus.js",
+					"js/app.js",
+					"images/qihoo.png",
+					"images/qq.png",
+					"images/sinaweibo.png",
+					"images/weixin.png"
+				],
+				"refer": [
+					"unlock.html",
+					"forget_password.html",
+					"main.html",
+					"reg.html"
+				],
+				"priority": 0
+			},
+			"html/login.html": {
+				"resources": [
+					"js/app.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/mui.enterfocus.js",
+					"fonts/mui.ttf",
+					"css/mui.css",
+					"images/580logo.png",
+					null,
+					"js/svn.js",
+					"manifest.json"
+				],
+				"refer": [
+					"html/main.html",
+					"html/reg.html",
+					"examples/media-list.html",
+					"examples/ttt.html",
+					"examples/tabbar.html",
+					"html/forget_password.html"
+				],
+				"priority": 0
+			},
+			"html/main.html": {
+				"resources": [],
+				"refer": [
+					"html/setting.html"
+				],
+				"priority": 0
+			},
+			"html/reg.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"examples/tab-580houqin-main.html",
+					"js/app.js",
+					"css/style.css",
+					"js/mui.min.js"
+				],
+				"refer": [
+					"html/login.html"
+				],
+				"priority": 0
+			},
+			"html/setting.html": {
+				"resources": [
+					"libs/easymob-webim-sdk/easemob.im-1.0.5.js",
+					"fonts/mui.ttf",
+					"libs/easymob-webim-sdk/json2.js",
+					"libs/easymob-webim-sdk/jquery-1.11.1.js",
+					"js/mui.locker.js",
+					"js/feedback.js",
+					"js/feedback-page.js",
+					"libs/easymob-webim-sdk/strophe-custom-2.0.0.js",
+					"js/mui.view.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/media-list.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"images/cbd.jpg",
+					"images/yuantiao.jpg",
+					"images/muwu.jpg",
+					"images/shuijiao.jpg",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/打工580logonew.png",
+					"css/app.css",
+					"images/580logo.png",
+					"css/mui.css",
+					"images/xiao.gif",
+					"images/news.gif",
+					"images/jjr.gif",
+					"images/zj.gif",
+					"images/pin.gif",
+					"js/app.js",
+					"js/mui.enterfocus.js",
+					"images/580-2.png",
+					"images/dagong580-logo-mini.png",
+					"images/580-logo-mini.png",
+					"images/580-mini.png",
+					"images/222333.png",
+					"images/333.png",
+					"images/222.png"
+				],
+				"refer": [
+					"examples/tab-webview-subpage-about.html",
+					"examples/tab-webview-main.html"
+				],
+				"priority": 0
+			},
+			"examples/ttt.html": {
+				"resources": [
+					"images/cbd.jpg",
+					"images/yuantiao.jpg",
+					"images/muwu.jpg",
+					"css/app.css",
+					"fonts/mui.ttf",
+					"images/shuijiao.jpg"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/tab-webview-subpage-about.html": {
+				"resources": [
+					"css/mui.min.css",
+					"images/12.png",
+					"images/11.png",
+					"images/yuantiao2.png",
+					"images/13.png",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"images/yuantiao.jpg",
+					"css/style.css",
+					"img/tour4.jpg",
+					"img/tour8.jpg",
+					"img/tour5.jpg",
+					"img/tour9.jpg",
+					"img/tour6.jpg",
+					"img/tour2.jpg",
+					"img/tour1.jpg",
+					"img/tour7.jpg",
+					"img/tour3.jpg",
+					"img/disc.png",
+					"images/13-1.png",
+					null,
+					"picbak/fugang1.jpg",
+					"images/jiang.png",
+					"picbak/sisuo.jpg",
+					"picbak/renbao (1).jpg",
+					"picbak/renbao (3).jpg",
+					"js/mui.js"
+				],
+				"refer": [
+					"detail.html",
+					"examples/guide.html",
+					"examples/grid-default.html",
+					"examples/template.html",
+					"examples/pullrefresh_main.html",
+					"page/xiaohua.html",
+					"examples/detail.html"
+				],
+				"priority": 0
+			},
+			"examples/tab-webview-subpage-contact.html": {
+				"resources": [
+					"images/60x60.gif",
+					"css/mui.min.css",
+					"images/xiao.gif",
+					"images/news.gif",
+					"images/jjr.gif",
+					"images/zj.gif",
+					"images/pin.gif",
+					"js/mui.min.js",
+					"images/222.png",
+					"css/mui.css",
+					"images/222-new.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/tab-webview-main.html": {
+				"resources": [
+					"css/mui.min.css",
+					"examples/tab-webview-subpage-about.html",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.css",
+					"examples/tab-webview-subpage-chat.html",
+					"examples/tab-webview-subpage-contact.html"
+				],
+				"refer": [
+					"examples/tab-webview-subpage-setting.html"
+				],
+				"priority": 0
+			},
+			"detail.html": {
+				"resources": [
+					"css/iconbutton.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"baomi.html"
+				],
+				"priority": 0
+			},
+			"examples/tab-webview-subpage-chat.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/app.css",
+					"images/222-new.png",
+					"js/mui.js"
+				],
+				"refer": [
+					"examples/grid-default.html",
+					"examples/tab-580hou-main.html",
+					"examples/tab-580houqin-main.html"
+				],
+				"priority": 0
+			},
+			"examples/tab-webview-subpage-setting.html": {
+				"resources": [
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/iconbutton.css",
+					"css2/oil.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/grid-default.html": {
+				"resources": [
+					"css/app.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/pullrefresh_main.html": {
+				"resources": [
+					"examples/pullrefresh_sub.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"page/xiaohua.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/iconbutton.css",
+					"images/123.gif"
+				],
+				"refer": [
+					"detail.html"
+				],
+				"priority": 0
+			},
+			"examples/tab-580hou-main.html": {
+				"resources": [
+					"examples/tab-webview-subpage-about.html",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.css"
+				],
+				"refer": [
+					"examples/tab-webview-subpage-setting.html",
+					"examples/tab-webview-subpage-chat.html",
+					"examples/tab-webview-subpage-contact.html"
+				],
+				"priority": 0
+			},
+			"examples/tab-580houqin-main.html": {
+				"resources": [
+					"examples/tab-webview-580houqin-a.html",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.css",
+					"css/app.css",
+					"examples/tab-webview-580houqin-b.html",
+					"html/reg.html",
+					"html/menu.html",
+					"html/aaa.html",
+					"html/bbb.html",
+					"examples/tab-webview-580houqin-d.html",
+					"examples/tab-webview-580houqin-c.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/tab-webview-580houqin-c.html": {
+				"resources": [
+					"images/xiao.gif",
+					"images/news.gif",
+					"images/jjr.gif",
+					"images/zj.gif",
+					"images/pin.gif",
+					"css/mui.min.css",
+					"img/disc.png",
+					"img/tour1.jpg",
+					"images/13.png",
+					"js/mui.min.js",
+					"css/style.css",
+					"picbak/g11.jpg",
+					"picbak/g22.jpg",
+					"picbak/g33.jpg",
+					null,
+					"fonts/mui.ttf",
+					"css2/oil.css",
+					"js/common.js",
+					"js/oilCard.js"
+				],
+				"refer": [
+					"examples/detail.html"
+				],
+				"priority": 0
+			},
+			"examples/tab-webview-580houqin-d.html": {
+				"resources": [
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"images/xiao.gif",
+					"picbak/b33.jpg",
+					"picbak/111.jpg",
+					"img/disc.png",
+					"img/tour1.jpg",
+					"css/style.css",
+					"images/123.gif",
+					"picbak/123.jpg",
+					"picbak/124.jpg",
+					"picbak/u\u003d3068497977,1426769380\u0026fm\u003d21\u0026gp\u003d0.jpg",
+					"picbak/221.jpg"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/tab-webview-580houqin-a.html": {
+				"resources": [
+					"img/disc.png",
+					"images/12.png",
+					"images/13.png",
+					"img/tour1.jpg",
+					"css/style.css",
+					"images/yuantiao2.png",
+					"images/11.png",
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css2/oil.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/tab-webview-580houqin-b.html": {
+				"resources": [
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"css/mui.css",
+					"css2/oil.css"
+				],
+				"refer": [
+					"examples/tab-580houqin-main.html"
+				],
+				"priority": 0
+			},
+			"html/menu.html": {
+				"resources": [
+					"css/app.css",
+					"css/mui.min.css",
+					"images/580logo.png",
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/tabbar.html": {
+				"resources": [
+					"images/222.png",
+					"css/app.css",
+					"fonts/mui.ttf",
+					"images/60x60.gif",
+					"css/mui.min.css",
+					"js/app.js",
+					"js/mui.min.js",
+					"images/580logo.png",
+					"js/mui.enterfocus.js",
+					"css/mui.css",
+					"images/222-new.png",
+					"picbak/123.jpg",
+					"picbak/2.png",
+					"picbak/18.png",
+					"picbak/7.png",
+					"picbak/6.png",
+					"picbak/11111.png",
+					"picbak/22222.png",
+					"picbak/33333.png",
+					"picbak/44444.png",
+					"picbak/55555.png",
+					"picbak/88888.png",
+					null
+				],
+				"refer": [
+					"examples/tab-webview-main.html",
+					"examples/myprofile.html",
+					"examples/baomi.html",
+					"examples/my_profile.html",
+					"examples/new_message.html",
+					"examples/job_wanted.html",
+					"examples/Referral_Bonus.html",
+					"examples/My_Collection.html",
+					"examples/setting.html",
+					"examples/tab-webview-subpage-setting.html",
+					"examples/tab-webview-subpage-chat.html",
+					"examples/tab-webview-subpage-contact.html",
+					"examples/tab-webview-subpage-about.html",
+					"examples/kaoQingongzi.html",
+					"examples/bierenGongzi.html",
+					"examples/bierenGongzhi.html",
+					"examples/gongZhi_main.html",
+					"examples/tab-580houqin-main.html",
+					"examples/pullrefresh_with_tab_gongzhi.html",
+					"examples/tab-top-webview-main.html"
+				],
+				"priority": 0
+			},
+			"examples/detail.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"css/mui.css",
+					"css/iconbutton.css",
+					"js/mui.min.js",
+					"images/13.png",
+					"picbak/fugang2.jpg",
+					"picbak/fugang1.jpg",
+					"picbak/fugang3.jpg",
+					"images/cbd.jpg",
+					"images/shuijiao.jpg",
+					"css/style.css",
+					"picbak/sisuo.jpg",
+					"css/mui.min.css",
+					"js/common.js",
+					"js/oilCard.js",
+					"popover_files/ico_zsh.png",
+					"popover_files/ico_zsy.png",
+					"css2/oil.css",
+					"images/detail-2.png",
+					"images/detail-1.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/aaa.html": {
+				"resources": [
+					"images/580logo.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/baomi.html": {
+				"resources": [
+					"css/app.css",
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/my_profile.html": {
+				"resources": [
+					"picbak/11111.png",
+					"picbak/2.png",
+					"picbak/123.jpg",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"picbak/22222.png",
+					"css/mui.css",
+					"picbak/55555.png",
+					"picbak/7.png",
+					"picbak/33333.png",
+					"js/common.js",
+					"js/oilCard.js",
+					"css2/oil.css",
+					"js/mui.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/new_message.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/job_wanted.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/Referral_Bonus.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/My_Collection.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.css",
+					"js/oilCard.js",
+					"css/style.css"
+				],
+				"refer": [
+					"examples/detail.html"
+				],
+				"priority": 0
+			},
+			"examples/setting.html": {
+				"resources": [
+					"examples/js/feedback.js",
+					"examples/css/feedback.css",
+					"examples/js/mui.view.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.css",
+					"css2/oil.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/kaoQingongzi.html": {
+				"resources": [
+					"js/common.js",
+					"js/oilCard.js",
+					"css2/oil.css",
+					"images/detail-2.png",
+					"images/detail-1.png",
+					"css/iconbutton.css",
+					"picbak/sisuo.jpg",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"css/mui.css"
+				],
+				"refer": [
+					"examples/bierenGongzi.html"
+				],
+				"priority": 0
+			},
+			"examples/bierenGongzi.html": {
+				"resources": [
+					"css2/oil.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"css/mui.css"
+				],
+				"refer": [
+					"examples/bierenGongzi-detail.html"
+				],
+				"priority": 0
+			},
+			"examples/bierenGongzi-detail.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"css2/oil.css",
+					"css/mui.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/forget_password.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/bierenGongzhi.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/mui.css",
+					"examples/bierenGongzhi_sub.html"
+				],
+				"refer": [
+					"examples/bierenGongzhi-detail.html"
+				],
+				"priority": 0
+			},
+			"examples/bierenGongzhi_sub.html": {
+				"resources": [
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/pullrefresh_with_tab_gongzhi.html": {
+				"resources": [
+					"js/mui.pullToRefresh.js",
+					"js/mui.pullToRefresh.material.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/tab-top-webview-main.html": {
+				"resources": [
+					"js/webviewGroup.js",
+					"examples/tab-top-subpage-1.html",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"examples/tab-top-subpage-2.html"
+				],
+				"priority": 0
+			},
+			"examples/tab-top-subpage-1.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"examples/detail.html",
+					"examples/factoriesgongzhi_main.html"
+				],
+				"priority": 0
+			},
+			"examples/factoriesgongzhi_main.html": {
+				"resources": [
+					"examples/pullrefresh_sub.html",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"examples/bierenGongzhi-detail.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"examples/bierenGongzhi-detail.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"css2/oil.css",
+					"css/mui.css"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"js/service.js",
+				"libs/easymob-webim-sdk/quickstart.md",
+				"images/user-photo.png",
+				"README.md"
+			]
+		}
+	},
+	"unpackage": [
+		"README.md",
+		"images/user-photo.png",
+		"libs/easymob-webim-sdk/quickstart.md"
+	]
+}
